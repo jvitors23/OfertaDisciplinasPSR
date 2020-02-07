@@ -23,7 +23,9 @@ public class Cadastro extends javax.swing.JFrame {
      */
     public Cadastro() {
         initComponents();
+                 
         this.setLocationRelativeTo(null);
+        
        
         
        
@@ -39,213 +41,227 @@ public class Cadastro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        lbl_cadastrar_professor = new javax.swing.JLabel();
+        edt_nome = new javax.swing.JTextField();
+        lbl_nome = new javax.swing.JLabel();
+        lbl_matricula = new javax.swing.JLabel();
+        edt_matricula = new javax.swing.JTextField();
+        lbl_turno = new javax.swing.JLabel();
+        cb_matutino = new javax.swing.JCheckBox();
+        cb_vespertino = new javax.swing.JCheckBox();
+        cb_noturno = new javax.swing.JCheckBox();
+        lbl_preferencias = new javax.swing.JLabel();
+        btn_cancelar = new javax.swing.JButton();
+        edt_preferencias = new javax.swing.JTextField();
+        btn_cadastrar = new javax.swing.JButton();
+        lbl_exemplo = new javax.swing.JLabel();
+        lbl_campos_obrigatorios = new javax.swing.JLabel();
+        lbl_dica = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Cadastrar Professor");
+        lbl_cadastrar_professor.setText("Cadastrar Professor");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        edt_nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                edt_nomeActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Nome:");
+        lbl_nome.setText(" Nome *");
 
-        jLabel3.setText("Matrícula:");
+        lbl_matricula.setText("Matrícula *");
 
-        jLabel4.setText("Turno:");
+        lbl_turno.setText("Turno *");
 
-        jCheckBox1.setText("Matutino");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        cb_matutino.setText("Matutino");
+        cb_matutino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                cb_matutinoActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setText("Vespertino");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        cb_vespertino.setText("Vespertino");
+        cb_vespertino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                cb_vespertinoActionPerformed(evt);
             }
         });
 
-        jCheckBox3.setText("Noturno");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+        cb_noturno.setText("Noturno");
+        cb_noturno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                cb_noturnoActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Preferência de Disciplinas:");
+        lbl_preferencias.setText("Preferência de Disciplinas:");
 
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_cancelarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cadastrar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_cadastrar.setText("Cadastrar");
+        btn_cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_cadastrarActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Gravar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        lbl_exemplo.setText("Digite as disciplinas separadas por virgula. Ex: COMP089, COMP332");
+
+        lbl_campos_obrigatorios.setText("* Campos obrigatórios");
+
+        lbl_dica.setText("O professor pode escolher 0 (zero) ou mais disciplinas preferenciais. ");
+
+        jLabel3.setText("O professor deve escolher pelo menos um dos 3 (três) turnos.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jCheckBox1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jCheckBox2)
-                                .addGap(33, 33, 33)
-                                .addComponent(jCheckBox3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(148, 148, 148)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(97, 97, 97)
-                                .addComponent(jButton1)
-                                .addGap(51, 51, 51)
-                                .addComponent(jButton2)))
-                        .addGap(0, 70, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                            .addComponent(lbl_matricula)
+                            .addComponent(lbl_nome))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(edt_nome)
+                            .addComponent(edt_matricula)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_preferencias)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField2)))
+                                .addGap(142, 142, 142)
+                                .addComponent(lbl_cadastrar_professor))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jTextField3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3)))))
+                                .addGap(91, 91, 91)
+                                .addComponent(btn_cancelar)
+                                .addGap(69, 69, 69)
+                                .addComponent(btn_cadastrar))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lbl_turno)
+                                    .addGap(39, 39, 39)
+                                    .addComponent(cb_matutino)
+                                    .addGap(36, 36, 36)
+                                    .addComponent(cb_vespertino)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cb_noturno))
+                                .addComponent(edt_preferencias, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbl_exemplo)
+                            .addComponent(lbl_campos_obrigatorios)
+                            .addComponent(lbl_dica)
+                            .addComponent(jLabel3))
+                        .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jLabel1)
+                .addComponent(lbl_cadastrar_professor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(edt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_nome))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl_matricula)
+                    .addComponent(edt_matricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jLabel4)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox3))
+                    .addComponent(cb_matutino)
+                    .addComponent(lbl_turno)
+                    .addComponent(cb_vespertino)
+                    .addComponent(cb_noturno))
                 .addGap(9, 9, 9)
-                .addComponent(jLabel5)
+                .addComponent(lbl_preferencias)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(edt_preferencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_exemplo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_campos_obrigatorios)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_dica)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addGap(91, 91, 91)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btn_cancelar)
+                    .addComponent(btn_cadastrar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void edt_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edt_nomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_edt_nomeActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void cb_matutinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_matutinoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_cb_matutinoActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void cb_vespertinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_vespertinoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_cb_vespertinoActionPerformed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+    private void cb_noturnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_noturnoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+    }//GEN-LAST:event_cb_noturnoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
         new Inicio().setVisible(true);
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_cancelarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        JOptionPane optionPane = new JOptionPane();
-        javax.swing.JDialog dialog = optionPane.createDialog(this, "AVISO");
-        optionPane.setMessage("Professor Cadastrado com sucesso!");
-        java.awt.Toolkit.getDefaultToolkit().beep();        
-        dialog.setDefaultCloseOperation(HIDE_ON_CLOSE);
-        dialog.setAlwaysOnTop(true);    
-        dialog.setVisible(true);
-        this.dispose();
-        new Inicio().setVisible(true);
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
         String disciplinas;
-        disciplinas = jTextField3.getText();
-        BufferedWriter buffWrite;
-        try {
-            buffWrite = new BufferedWriter(new FileWriter("disciplinasDesejadas.txt", true));
-            buffWrite.append(disciplinas);
-            buffWrite.newLine();
-            buffWrite.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
+        disciplinas = edt_preferencias.getText();
+        String nome = edt_nome.getText();
+        String matricula = edt_matricula.getText();
+        String matutino = Boolean.toString(cb_matutino.isSelected());
+        String vespertino = Boolean.toString(cb_vespertino.isSelected());
+        String noturno = Boolean.toString(cb_noturno.isSelected());
+        if(nome.trim().length()<1){
+            JOptionPane.showMessageDialog(this.rootPane, "Nome não pode ser vazio!");           
+        }else{
+            if(matricula.trim().length()<1){
+                JOptionPane.showMessageDialog(this.rootPane, "Matrícula não pode ser vazia!"); 
+            }else{
+                if(!cb_matutino.isSelected() && !cb_vespertino.isSelected() && !cb_noturno.isSelected()){
+                    JOptionPane.showMessageDialog(this.rootPane, "Escolha algum dos 3 (três) turnos!");
+                    
+                }else{
+                    BufferedWriter buffWrite;
+                    try {
+                        buffWrite = new BufferedWriter(new FileWriter("professor.txt", true));
+                        buffWrite.append(matricula+","+nome+","+matutino+","+vespertino+","+noturno+","+disciplinas);
+                        buffWrite.newLine();
+                        buffWrite.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    JOptionPane.showMessageDialog(this.rootPane, "Professor Cadastrado com sucesso!");
+                    dispose();
+                    new Inicio().setVisible(true);
+                }
+            }
+        }       
+        
+    }//GEN-LAST:event_btn_cadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,19 +300,22 @@ public class Cadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btn_cadastrar;
+    private javax.swing.JButton btn_cancelar;
+    private javax.swing.JCheckBox cb_matutino;
+    private javax.swing.JCheckBox cb_noturno;
+    private javax.swing.JCheckBox cb_vespertino;
+    private javax.swing.JTextField edt_matricula;
+    private javax.swing.JTextField edt_nome;
+    private javax.swing.JTextField edt_preferencias;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lbl_cadastrar_professor;
+    private javax.swing.JLabel lbl_campos_obrigatorios;
+    private javax.swing.JLabel lbl_dica;
+    private javax.swing.JLabel lbl_exemplo;
+    private javax.swing.JLabel lbl_matricula;
+    private javax.swing.JLabel lbl_nome;
+    private javax.swing.JLabel lbl_preferencias;
+    private javax.swing.JLabel lbl_turno;
     // End of variables declaration//GEN-END:variables
 }
