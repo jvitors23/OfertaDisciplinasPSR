@@ -2,9 +2,12 @@ package main;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Oferta {
     public ArrayList<Disciplina> disciplinas;
+    public Map<String,ArrayList<Turma>> grade = new HashMap<String,ArrayList<Turma>> ();
     public ArrayList<Professor> professores;
     public ArrayList<Turma> turmas;
     public int numeroSemestre;

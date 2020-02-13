@@ -47,7 +47,7 @@ public class Disciplina {
                 disciplina = linha.split(";");
               
                 if(Integer.parseInt(disciplina[0]) == semestre){
-                    Disciplina aux = new Disciplina(Integer.parseInt(disciplina[0]), disciplina[1], disciplina[2], Integer.parseInt(disciplina[3]), Boolean.parseBoolean(disciplina[4]));
+                    Disciplina aux = new Disciplina(Integer.parseInt(disciplina[0]), disciplina[2], disciplina[1], Integer.parseInt(disciplina[3]), Boolean.parseBoolean(disciplina[4]));
                     disciplinas.add(aux);
                 }else{
              
@@ -63,6 +63,46 @@ public class Disciplina {
     @Override
     public String toString() {
         return "Disciplina{" + "nome=" + nome + ", codigo=" + codigo + ", creditos=" + creditos + ", laboratorio=" + laboratorio + ", semestreObrigatorio=" + semestreObrigatorio + '}';
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public int getCreditos() {
+        return creditos;
+    }
+
+    public void setCreditos(int creditos) {
+        this.creditos = creditos;
+    }
+
+    public boolean isLaboratorio() {
+        return laboratorio;
+    }
+
+    public void setLaboratorio(boolean laboratorio) {
+        this.laboratorio = laboratorio;
+    }
+
+    public int getSemestreObrigatorio() {
+        return semestreObrigatorio;
+    }
+
+    public void setSemestreObrigatorio(int semestreObrigatorio) {
+        this.semestreObrigatorio = semestreObrigatorio;
     }
     
 }

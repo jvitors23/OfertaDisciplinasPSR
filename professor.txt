@@ -1,2 +1,6 @@
-123,jose,true,false,false,
+123,jose,true,false,false,dfbxcvbxc
 242424,helisson,false,true,false,COMP123,COMP158
+201700030314,Kalil,false,true,false,COMP094,COMP337
+123456789,jose,true,true,true,COMP789,COMP963
+4567899632,wendel,false,false,true,COMP145, COMP158
+159786345,filipe,false,true,false,COMP789, COMP1245

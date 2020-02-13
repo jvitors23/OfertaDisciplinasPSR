@@ -25,7 +25,7 @@ public class Cadastro extends javax.swing.JFrame {
         initComponents();
                  
         this.setLocationRelativeTo(null);
-        
+        setTitle("Cadastrar Professor");    
        
         
        
@@ -229,7 +229,7 @@ public class Cadastro extends javax.swing.JFrame {
 
     private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
         String disciplinas;
-        disciplinas = edt_preferencias.getText();
+        disciplinas = edt_preferencias.getText().trim();
         String nome = edt_nome.getText();
         String matricula = edt_matricula.getText();
         String matutino = Boolean.toString(cb_matutino.isSelected());
@@ -248,7 +248,7 @@ public class Cadastro extends javax.swing.JFrame {
                     BufferedWriter buffWrite;
                     try {
                         buffWrite = new BufferedWriter(new FileWriter("professor.txt", true));
-                        buffWrite.append(matricula+","+nome+","+matutino+","+vespertino+","+noturno+","+disciplinas);
+                        buffWrite.append(matricula+","+nome+","+matutino+","+vespertino+","+noturno+","+disciplinas.trim());
                         buffWrite.newLine();
                         buffWrite.close();
                     } catch (IOException ex) {
