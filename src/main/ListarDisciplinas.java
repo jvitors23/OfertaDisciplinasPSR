@@ -65,6 +65,51 @@ public class ListarDisciplinas extends javax.swing.JFrame {
         
     }
 
+    ListarDisciplinas(boolean menu) throws IOException {
+        
+        initComponents();
+        btn_menu.setVisible(menu);
+        
+        setTitle("Listar Disciplinas");
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    
+        text_area.setLayout(null);
+        text_area.setEditable(false);
+        
+        PrintStream outputPrintStream = new PrintStream(new OutputStream() {
+            @Override
+            public void write(int b) throws IOException {
+                text_area.append(String.valueOf((char) b));
+            }
+        });
+        System.setOut(outputPrintStream);      
+        
+        String[] disciplina = new String[5];
+        ArrayList<Disciplina> disciplinas = new ArrayList();
+        BufferedReader buffRead = new BufferedReader(new FileReader("disciplinas.txt"));
+        String linha = "";
+        while (true) {
+            try {
+                linha = buffRead.readLine();
+            } catch (IOException ex) {
+                Logger.getLogger(Disciplina.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (linha != null) {
+                disciplina = linha.split(";");                
+                Disciplina aux = new Disciplina(Integer.parseInt(disciplina[0]), disciplina[2], disciplina[1], Integer.parseInt(disciplina[3]), Boolean.parseBoolean(disciplina[4]));
+                System.out.println("=============");  
+                System.out.println("Nome: "+aux.getNome());
+                System.out.println("Codigo: "+aux.getCodigo()+"\nCreditos: "+aux.getCreditos()+"\nSemestre obrigatorio: "+aux.getSemestreObrigatorio());
+              
+            }else
+                break;
+        }
+        buffRead.close();  
+        
+        
+        
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

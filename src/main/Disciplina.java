@@ -59,6 +59,30 @@ public class Disciplina {
         buffRead.close();
         return disciplinas;
     }
+    
+    
+    public static ArrayList<Disciplina> retornaDisciplinas() throws IOException{
+        String[] disciplina = new String[5];
+        ArrayList<Disciplina> disciplinas = new ArrayList();
+        BufferedReader buffRead = new BufferedReader(new FileReader("disciplinas.txt"));
+        String linha = "";
+        while (true) {
+            try {
+                linha = buffRead.readLine();
+            } catch (IOException ex) {
+                Logger.getLogger(Disciplina.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (linha != null) {
+                disciplina = linha.split(";");             
+                Disciplina aux = new Disciplina(Integer.parseInt(disciplina[0]), disciplina[2], disciplina[1], Integer.parseInt(disciplina[3]), Boolean.parseBoolean(disciplina[4]));
+                disciplinas.add(aux);                
+          
+            } else
+                break;
+        }
+        buffRead.close();
+        return disciplinas;
+    }
 
     @Override
     public String toString() {

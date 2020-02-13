@@ -81,6 +81,65 @@ public class ListarProfessores extends javax.swing.JFrame {
         buffRead.close();        
     }
 
+    ListarProfessores(boolean menu) throws IOException {
+        initComponents();
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+       
+        setTitle("Listar Professores");
+        btn_menu.setVisible(false);
+    
+        text_area.setLayout(null);
+        text_area.setEditable(false);
+        
+        PrintStream outputPrintStream = new PrintStream(new OutputStream() {
+            @Override
+            public void write(int b) throws IOException {
+                text_area.append(String.valueOf((char) b));
+            }
+        });
+        System.setOut(outputPrintStream);      
+        
+        String[] professor;        
+        BufferedReader buffRead = new BufferedReader(new FileReader("professor.txt"));
+        String linha = "";
+        ArrayList<String> preferencias = null; 
+        while (true) {
+            try {
+                linha = buffRead.readLine();
+            } catch (IOException ex) {
+                Logger.getLogger(Disciplina.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (linha != null) {
+                professor = linha.split(",");              
+                
+                String matutino = "";
+                String vespertino = ""; 
+                String noturno = "";
+             
+                if(professor[2].equals("true"))
+                    matutino = "Matutino";
+                if(professor[3].equals("true"))
+                    vespertino = "Vespertino";
+                if(professor[4].equals("true"))
+                    noturno = "Noturno";              
+                
+                System.out.println("=============");  
+                System.out.println("Nome: "+professor[1]);
+                System.out.println("Matricula: "+professor[0]+
+                        "\nTurnos de trabalho: "+matutino+" "+ vespertino+" "+noturno);
+                System.out.println("Preferencias: ");
+                for(int i=5; i<professor.length; i++){
+                    System.out.println(professor[i]);                    
+                }               
+                
+            }else
+                break;
+        }
+        buffRead.close();        
+    }
+
+  
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

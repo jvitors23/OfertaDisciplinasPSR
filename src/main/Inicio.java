@@ -6,6 +6,7 @@
 package main;
 
 import java.io.IOException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,6 +23,12 @@ public class Inicio extends javax.swing.JFrame {
         
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        
+        
+        
+        
+        
     }
 
     /**
@@ -142,6 +149,8 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        new ConfigOferta().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btn_cadastrar_professorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrar_professorActionPerformed

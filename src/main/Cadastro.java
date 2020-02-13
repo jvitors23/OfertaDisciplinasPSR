@@ -229,16 +229,16 @@ public class Cadastro extends javax.swing.JFrame {
 
     private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
         String disciplinas;
-        disciplinas = edt_preferencias.getText().trim();
+        disciplinas = edt_preferencias.getText().replaceAll(" ","");
         String nome = edt_nome.getText();
         String matricula = edt_matricula.getText();
         String matutino = Boolean.toString(cb_matutino.isSelected());
         String vespertino = Boolean.toString(cb_vespertino.isSelected());
         String noturno = Boolean.toString(cb_noturno.isSelected());
-        if(nome.trim().length()<1){
+        if(nome.replaceAll(" ","").length()<1){
             JOptionPane.showMessageDialog(this.rootPane, "Nome não pode ser vazio!");           
         }else{
-            if(matricula.trim().length()<1){
+            if(matricula.replaceAll(" ","").length()<1){
                 JOptionPane.showMessageDialog(this.rootPane, "Matrícula não pode ser vazia!"); 
             }else{
                 if(!cb_matutino.isSelected() && !cb_vespertino.isSelected() && !cb_noturno.isSelected()){
