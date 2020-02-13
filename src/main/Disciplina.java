@@ -2,6 +2,7 @@ package main;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -22,6 +23,38 @@ public class Disciplina {
         this.codigo = codigo;
         this.creditos = creditos;
         this.laboratorio = laboratorio;       
+    }
+    
+    public Disciplina(int semestreObrigatorio){
+        this.semestreObrigatorio = semestreObrigatorio;
+    }
+   
+    
+    public static Disciplina buscaDisciplina(String codigo) throws FileNotFoundException, IOException{
+        String[] disciplina = new String[5];
+        Disciplina aux = null;
+        BufferedReader buffRead = new BufferedReader(new FileReader("disciplinas.txt"));
+        String linha = "";
+        while (true) {
+            try {
+                linha = buffRead.readLine();
+            } catch (IOException ex) {
+                Logger.getLogger(Disciplina.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (linha != null) {
+                disciplina = linha.split(";");
+              
+                if(disciplina[1].equals(codigo)){
+                    aux = new Disciplina(Integer.parseInt(disciplina[0]), disciplina[2], disciplina[1], Integer.parseInt(disciplina[3]), Boolean.parseBoolean(disciplina[4]));
+                }else{
+             
+                }
+          
+            } else
+                break;
+        }
+        buffRead.close();
+        return aux;
     }
     
     public void cadastrarDisciplina(Disciplina disciplina) throws IOException {

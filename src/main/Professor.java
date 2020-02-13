@@ -9,6 +9,7 @@ public class Professor {
     boolean matutino;
     boolean vespertino;
     boolean noturno;
+    ArrayList<String> turnoTrabalho;
 
     public Professor(String nome, String matricula, boolean matutino, boolean vespertino, boolean noturno, ArrayList<String> preferencias) {
         this.nome = nome;
@@ -17,7 +18,11 @@ public class Professor {
         this.vespertino = vespertino; 
         this.noturno = noturno; 
         this.preferencias = preferencias;
-    }    
+    }
+    
+    public Professor(){
+    
+    }
 
     public String getNome() {
         return nome;
@@ -67,6 +72,14 @@ public class Professor {
 
     public void setMatricula(String matricula) {
         this.matricula = matricula;
+    }
+
+    public ArrayList<String> getTurnoTrabalho() {
+        return turnoTrabalho;
+    }
+
+    public void setTurnoTrabalho(ArrayList<String> turnoTrabalho) {
+        this.turnoTrabalho = turnoTrabalho;
     }
     
     
