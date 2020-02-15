@@ -4,8 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import main.aima.*;
 
 public class Professor extends Variable {
     public String nome;
@@ -16,6 +15,22 @@ public class Professor extends Variable {
     boolean vespertino;
     boolean noturno;
     public int creditos_lecionados = 0;
+
+    public ArrayList<String> getLecionadas() {
+        return lecionadas;
+    }
+
+    public void setLecionadas(ArrayList<String> lecionadas) {
+        this.lecionadas = lecionadas;
+    }
+
+    public int getCreditos_lecionados() {
+        return creditos_lecionados;
+    }
+
+    public void setCreditos_lecionados(int creditos_lecionados) {
+        this.creditos_lecionados = creditos_lecionados;
+    }
 
     public Professor(String nome, String matricula, boolean matutino, boolean vespertino, boolean noturno, ArrayList<String> preferencias) {
         super(matricula);
@@ -82,15 +97,15 @@ public class Professor extends Variable {
     
      public static ArrayList<Professor> retornaProfessores() throws IOException{
         String[] professor;
-        ArrayList<String> pref = new ArrayList<String>();
+        
         ArrayList<Professor> professores = new ArrayList();
         BufferedReader buffRead = new BufferedReader(new FileReader("professor.txt"));
         String linha = "";
         while (true) {
-           
+            ArrayList<String> pref = new ArrayList<String>();
             linha = buffRead.readLine();
             
-            if (linha != null && !linha.equals("buffer")) {
+            if (linha != null) {
                 professor = linha.split(",");       
                 
                 boolean matutino, vespertino, noturno;
@@ -114,6 +129,11 @@ public class Professor extends Variable {
         }
         buffRead.close();
         return professores;
+    }
+
+    @Override
+    public String toString() {
+        return "Professor{" + "nome=" + nome + ", matricula=" + matricula + ", preferencias=" + preferencias + ", lecionadas=" + lecionadas + ", matutino=" + matutino + ", vespertino=" + vespertino + ", noturno=" + noturno + ", creditos_lecionados=" + creditos_lecionados + '}';
     }
     
     

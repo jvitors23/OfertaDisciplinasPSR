@@ -5,6 +5,7 @@
  */
 package main;
 
+import main.CSPprofTodisc.ProfessorDisciplina;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import main.aima.*;
+
 
 /**
  *
@@ -20,7 +23,10 @@ import java.util.logging.Logger;
 public class VisualizarOferta extends javax.swing.JFrame {
     
     private  ArrayList<Professor> professores_oferta; 
-    private ArrayList<Disciplina> disciplinas_oferta; 
+    private ArrayList<Disciplina> disciplinas_oferta ; 
+  
+    private ArrayList<Disciplina> disciplinas_dcomp;
+    private ArrayList<Disciplina> disciplinas_outros_deptos ;
     
 
     /**
@@ -30,40 +36,28 @@ public class VisualizarOferta extends javax.swing.JFrame {
         initComponents();
         this.disciplinas_oferta = disciplinas_oferta;
         this.professores_oferta = professores_oferta;
+        this.disciplinas_dcomp = new ArrayList<Disciplina>();
+        this.disciplinas_outros_deptos = new ArrayList<Disciplina>();
+      
+        
         this.setResizable(false);
         setTitle("Info Nova Oferta");
         this.setLocationRelativeTo(null);
         lbl_oferta.setText("Informações da Oferta Semestre: "+semestre);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-       
-        area_prof.setEditable(true);
-        area_prof.setText("");
+    
         area_prof.setEditable(false);
         
         for(int i=0; i<professores_oferta.size(); i++){
             area_prof.append("=================\n");  
             area_prof.append("Nome: "+professores_oferta.get(i).getNome()+"\n");
             area_prof.append("Matricula: "+professores_oferta.get(i).getMatricula()+"\n");           
-        }
-        
-  
-        
-        
-        PrintStream outputPrintStream2 = new PrintStream(new OutputStream() {
-            @Override
-            public void write(int b) throws IOException {
-                area_disc.append(String.valueOf((char) b));
-            }
-        });
-        area_disc.setEditable(true);
-        area_disc.setText("");
-        area_disc.setEditable(false);
-        System.setOut(outputPrintStream2);
+        }  
         
         for(int i=0; i<disciplinas_oferta.size(); i++){
-            System.out.println("=================");  
-            System.out.println("Nome: "+disciplinas_oferta.get(i).getNome());
-            System.out.println("Codigo: "+disciplinas_oferta.get(i).getCodigo());           
+            area_disc.append("=================\n");  
+            area_disc.append("Nome: "+disciplinas_oferta.get(i).getNome()+"\n");
+            area_disc.append("Codigo: "+disciplinas_oferta.get(i).getCodigo()+"\n");           
         }
         
         
@@ -119,7 +113,7 @@ public class VisualizarOferta extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -142,7 +136,7 @@ public class VisualizarOferta extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -168,32 +162,33 @@ public class VisualizarOferta extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                        .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(50, 50, 50)
                 .addComponent(btn_cancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_gerar)
-                .addGap(49, 49, 49))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(63, 63, 63))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(lbl_oferta)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(lbl_oferta)))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,15 +199,15 @@ public class VisualizarOferta extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cancelar)
                     .addComponent(btn_gerar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -237,46 +232,117 @@ public class VisualizarOferta extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void btn_gerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerarActionPerformed
-        System.out.println(disciplinas_oferta.size());
+       
+        
+        //separa as disciplinas do dcomp das de outros deptos
         for(int i=0; i<disciplinas_oferta.size();i++){
-            if(disciplinas_oferta.get(i).getCodigo().charAt(0)!='C'){
-                System.out.println(disciplinas_oferta.get(i).getNome());
-                disciplinas_oferta.remove(disciplinas_oferta.get(i));
-                i--;               
-            }            
+            if(disciplinas_oferta.get(i).getCodigo().charAt(0)!='C'){                
+                this.disciplinas_outros_deptos.add(disciplinas_oferta.get(i));                            
+            }else{
+                this.disciplinas_dcomp.add(disciplinas_oferta.get(i));                
+            }         
         }  
-        System.out.println(disciplinas_oferta.size());
+        
+        
+        //tratamento para add disciplinas pra profs q trabalham outro turno
+       
+        
         ProfessorDisciplina csp1 = null;
-        CspSolver strategy = new FlexibleBacktrackingSolver<Professor, String>();
-        Assignment<Professor, String> resultado;
+        FlexibleBacktrackingSolver strategy = new FlexibleBacktrackingSolver<Professor, String>();
+        Assignment<Professor, String> resultado = null;
         Optional<Assignment<Professor, String>> solucao; 
-        while(disciplinas_oferta.size()>0){
-            System.out.println(disciplinas_oferta.size());
+        
+        //adiciona disciplinas a definir
+        for(int i = 0 ; i<professores_oferta.size(); i++){   
+            Disciplina d = new Disciplina(0, "A definir", "a_definir"+professores_oferta.get(i).getMatricula(),0, false);
+            disciplinas_dcomp.add(d);    
+        }    
+        
+        int count=disciplinas_dcomp.size();
+        boolean a = false;       
+        while(count>0){
+            a=false;
+            for(int i = 0 ; i<professores_oferta.size(); i++){  
+                String disc ="a_definir"+professores_oferta.get(i).getMatricula();
+                for (int j = 0; j < disciplinas_dcomp.size(); j++) {
+                    if(disc.equals(disciplinas_dcomp.get(i).getCodigo())){
+                        a = true;                         
+                    }
+                    if(j==disciplinas_dcomp.size()-1 && a==false){
+                        Disciplina d = new Disciplina(0, "A definir", "a_definir"+professores_oferta.get(i).getMatricula(),0, false);
+                        disciplinas_dcomp.add(d);     
+                        j++;
+                    }
+                }                
+            }  
+
             try {
-                // TODO add your handling code here:
-                csp1 = new ProfessorDisciplina(this.disciplinas_oferta, this.professores_oferta);
-            } catch (IOException ex) {
+                csp1 = new ProfessorDisciplina(this.disciplinas_dcomp, this.professores_oferta);
+            } catch(IOException ex) {
                 Logger.getLogger(VisualizarOferta.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             solucao = strategy.solve(csp1);
-             resultado = solucao.get();
-             System.out.println(solucao.toString());
+            
+            
+
+            //tratar retorno vazio
+            try{
+                resultado = solucao.get();                
+            }catch(java.util.NoSuchElementException e){
+                
+                System.out.println("Não foi possível alocar");
+                break;                
+            }   
+            
+            
+            
+            //adiciona a alocação retornada pelo algoritmo as disciplinas lecionadas pelos professores
+            //remove as disciplinas já alocadas para a proxima execução
             for(int i=0; i<professores_oferta.size(); i++){
                 String disciplinaAux = resultado.getValue(resultado.getVariables().get(i));
                 professores_oferta.get(i).lecionadas.add(disciplinaAux);
-                for(int j = 0; j < disciplinas_oferta.size(); j++){
-                    if(disciplinaAux.equals(disciplinas_oferta.get(j).getCodigo())){
-                        disciplinas_oferta.remove(j);
+                for(int j = 0; j < disciplinas_dcomp.size(); j++){
+                    if(disciplinaAux.equals(disciplinas_dcomp.get(j).getCodigo())){
+                        disciplinas_dcomp.remove(j);
                         j--;
                     }
                 }
             }
-            System.out.println(disciplinas_oferta.size());
-            for(int i=0; i<professores_oferta.size(); i++){
-                System.out.println(professores_oferta.get(i).getNome() + " " + professores_oferta.get(i).lecionadas.toString());
+            
+            a=true; 
+            for(int i=0; i<resultado.getVariables().size(); i++){               
+                String disciplinaAux = resultado.getValue(resultado.getVariables().get(i));
+                if(disciplinaAux.charAt(0)=='C')
+                    a=false; 
             }
+            if(a)
+                break;
+            
+            int k=0;
+            for(int i=0; i<disciplinas_dcomp.size(); i++){
+                if(disciplinas_dcomp.get(i).getCodigo().charAt(0)=='C'){
+                    k++;
+                }
+            }
+            count = k; 
+            if(count == 0){
+                break; 
+            }
+            
+            
+            
+            
+            
+            for(int i=0; i<professores_oferta.size(); i++)
+                System.out.println(professores_oferta.get(i).getNome() + " " + professores_oferta.get(i).lecionadas.toString());
+              
         }
+        
+        for(int i=0; i<professores_oferta.size(); i++)
+            System.out.println(professores_oferta.get(i).lecionadas);
+//            System.out.println(professores_oferta.get(i).matricula + " " + professores_oferta.get(i).lecionadas.toString());
+            
         
     }//GEN-LAST:event_btn_gerarActionPerformed
 

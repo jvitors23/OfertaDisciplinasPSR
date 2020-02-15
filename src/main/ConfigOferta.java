@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package main;
+import main.aima.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,18 +33,7 @@ public class ConfigOferta extends javax.swing.JFrame {
         professores_oferta = new ArrayList<Professor>();
         disciplinas_cadastradas = Disciplina.retornaDisciplinas();
         professores_cadastrados = Professor.retornaProfessores(); 
-        String[] itens = new String[10];
-        itens[0]= "1";
-        itens[1]= "2";
-        itens[2]= "3";
-        itens[3]= "4";
-        itens[4]= "5";
-        itens[5]= "6";
-        itens[6]= "7";
-        itens[7]= "8";
-        itens[8]= "8";
-        itens[9]= "10";                   
-        DefaultComboBoxModel model = new DefaultComboBoxModel(itens);
+        
         
         obrigatorias = Disciplina.disciplinasSemestre(3);
         

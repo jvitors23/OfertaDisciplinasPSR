@@ -1,0 +1,32 @@
+package main.aima;
+/**
+ * A variable is a distinguishable object with a name.
+ *
+ * @author Ruediger Lunde
+ */
+public class Variable {
+    private final String name;
+
+    public Variable(String name) {
+        this.name = name;
+    }
+
+    public final String getName() {
+        return name;
+    }
+
+    public String toString() {
+        return name;
+    }
+
+    /** Variables with equal names are equal. */
+    @Override
+    public final boolean equals(Object obj) {
+        return (obj != null && obj.getClass() == getClass()) && name.equals(((Variable) obj).name);
+    }
+
+    @Override
+    public final int hashCode() {
+        return name.hashCode();
+    }
+}

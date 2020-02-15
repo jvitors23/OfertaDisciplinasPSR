@@ -8,8 +8,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import main.aima.*;
 
 public class Disciplina  {
+
+    public static int retornaCreditos(String cod) throws IOException {
+        ArrayList<Disciplina> arquivo = retornaDisciplinas();
+        for(int i=0; i<arquivo.size(); i++){
+            if(arquivo.get(i).getCodigo().equals(cod))
+                return arquivo.get(i).getCreditos();
+        }
+        return 0;       
+    }
     public String nome;
     public String codigo;
     public int creditos;

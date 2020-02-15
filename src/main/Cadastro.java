@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package main;
+import main.aima.*;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

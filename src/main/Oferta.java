@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import main.aima.*;
 
 public class Oferta {
     public ArrayList<Disciplina> disciplinas;
