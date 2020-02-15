@@ -26,7 +26,7 @@ public class ListarProfessores extends javax.swing.JFrame {
      */
     public ListarProfessores() throws FileNotFoundException, IOException {
         initComponents();
-        
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
         setTitle("Listar Professores");
 
@@ -157,7 +157,7 @@ public class ListarProfessores extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lbl_listar_prof.setText("Listar Professores");
+        lbl_listar_prof.setText("Listagem de  Professores");
 
         text_area.setColumns(20);
         text_area.setRows(5);
@@ -176,18 +176,16 @@ public class ListarProfessores extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 256, Short.MAX_VALUE)
-                        .addComponent(lbl_listar_prof)
-                        .addGap(251, 251, 251))))
+                .addComponent(jScrollPane1)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_menu)
-                .addGap(270, 270, 270))
+                .addGap(278, 278, 278))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(232, 232, 232)
+                .addComponent(lbl_listar_prof)
+                .addContainerGap(241, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,8 +193,8 @@ public class ListarProfessores extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lbl_listar_prof)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_menu)
                 .addContainerGap(12, Short.MAX_VALUE))
         );

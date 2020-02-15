@@ -7,21 +7,26 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Professor {
+public class Professor extends Variable {
     public String nome;
     public String matricula;
     public ArrayList<String> preferencias; 
+    public ArrayList<String> lecionadas;
     boolean matutino;
     boolean vespertino;
     boolean noturno;
+    public int creditos_lecionados = 0;
 
     public Professor(String nome, String matricula, boolean matutino, boolean vespertino, boolean noturno, ArrayList<String> preferencias) {
+        super(matricula);
         this.nome = nome;
         this.matricula = matricula;
         this.matutino = matutino;
         this.vespertino = vespertino; 
         this.noturno = noturno; 
         this.preferencias = preferencias;
+        this.lecionadas = new ArrayList<String>();
+        this.creditos_lecionados = 0; 
     }    
 
     public String getNome() {
@@ -85,7 +90,7 @@ public class Professor {
            
             linha = buffRead.readLine();
             
-            if (linha != null) {
+            if (linha != null && !linha.equals("buffer")) {
                 professor = linha.split(",");       
                 
                 boolean matutino, vespertino, noturno;

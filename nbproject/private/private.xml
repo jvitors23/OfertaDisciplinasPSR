@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jvss2/Desktop/Projeto%20IA/ProjetoIA-Oferta/src/main/Cadastro.java</file>
-            <file>file:/C:/Users/jvss2/Desktop/Projeto%20IA/ProjetoIA-Oferta/src/main/Disciplina.java</file>
+            <file>file:/C:/Users/jvss2/Desktop/Projeto%20IA/ProjetoIA-Oferta/src/main/ConstraintTurno.java</file>
+            <file>file:/C:/Users/jvss2/Desktop/Projeto%20IA/ProjetoIA-Oferta/src/main/NotEqualsConstraint.java</file>
+            <file>file:/C:/Users/jvss2/Desktop/Projeto%20IA/ProjetoIA-Oferta/src/main/ProfessorDisciplina.java</file>
+            <file>file:/C:/Users/jvss2/Desktop/Projeto%20IA/ProjetoIA-Oferta/src/main/Professor.java</file>
         </group>
     </open-files>
 </project-private>

@@ -23,7 +23,7 @@ public class Cadastro extends javax.swing.JFrame {
      */
     public Cadastro() {
         initComponents();
-                 
+        this.setResizable(false);         
         this.setLocationRelativeTo(null);
         setTitle("Cadastrar Professor");    
        

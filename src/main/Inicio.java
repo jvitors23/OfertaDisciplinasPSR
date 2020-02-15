@@ -23,6 +23,7 @@ public class Inicio extends javax.swing.JFrame {
         
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         
         
         
@@ -150,7 +151,11 @@ public class Inicio extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new ConfigOferta().setVisible(true);
+        try {
+            new ConfigOferta().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btn_cadastrar_professorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrar_professorActionPerformed

@@ -25,9 +25,11 @@ public class ConfigOferta extends javax.swing.JFrame {
      */
     public ConfigOferta() throws IOException {
         initComponents();
+        this.setResizable(false);  
         this.setLocationRelativeTo(null);
         setTitle("Configuração da Oferta");
-        
+        disciplinas_oferta = new ArrayList<Disciplina>();
+        professores_oferta = new ArrayList<Professor>();
         disciplinas_cadastradas = Disciplina.retornaDisciplinas();
         professores_cadastrados = Professor.retornaProfessores(); 
         String[] itens = new String[10];
@@ -42,14 +44,9 @@ public class ConfigOferta extends javax.swing.JFrame {
         itens[8]= "8";
         itens[9]= "10";                   
         DefaultComboBoxModel model = new DefaultComboBoxModel(itens);
-        select_semestre.setModel(model);
         
-        int semestre = select_semestre.getSelectedIndex()+1; 
-        try {
-            obrigatorias = Disciplina.disciplinasSemestre(semestre);
-        } catch (IOException ex) {
-            Logger.getLogger(ConfigOferta.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        obrigatorias = Disciplina.disciplinasSemestre(3);
+        
         
         String label_obrig = "";
         for(int i=0; i<obrigatorias.size(); i++){
@@ -75,7 +72,6 @@ public class ConfigOferta extends javax.swing.JFrame {
         lbl_config = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        select_semestre = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -102,14 +98,7 @@ public class ConfigOferta extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setText("Semestre da oferta");
-
-        select_semestre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        select_semestre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                select_semestreActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Semestre da oferta 3");
 
         jLabel3.setText("As disciplinas obrigatórias do semestre são adicionadas automáticamente.");
 
@@ -120,22 +109,15 @@ public class ConfigOferta extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(select_semestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(select_semestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -315,7 +297,7 @@ public class ConfigOferta extends javax.swing.JFrame {
                 .addComponent(btn_prof)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_disc)
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addGap(0, 20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_iniciar_oferta)
@@ -382,10 +364,11 @@ public class ConfigOferta extends javax.swing.JFrame {
         boolean val_prof = true; 
         String prof = edt_professores.getText().replaceAll(" ","");
         String[] prof_list = prof.split(",");
-      
+        
         for(int i=0; i<prof_list.length; i++){
             achou = false; 
             for(int j=0; j<professores_cadastrados.size();j++){
+                
                 if(prof_list[i].equals(professores_cadastrados.get(j).getMatricula())){
                     achou = true;                 
                 }
@@ -406,10 +389,35 @@ public class ConfigOferta extends javax.swing.JFrame {
                 todas_disc[i+disc_list.length] = obrigatorias.get(i).getCodigo();
             }
             
-            for(int i=0; i<disc_list.length+obrigatorias.size(); i++){
-                System.out.println(todas_disc[i]);
+            for(int i=0; i<todas_disc.length;i++){ 
+                for(int j=0; j<disciplinas_cadastradas.size(); j++){
+                    if(todas_disc[i].equals(disciplinas_cadastradas.get(j).getCodigo())){
+                        disciplinas_oferta.add(disciplinas_cadastradas.get(j));
+                        break;                        
+                    }
+                }          
             }
-            System.out.println("\n");
+            
+            for(int i=0; i<prof_list.length;i++){ 
+                for(int j=0; j<professores_cadastrados.size(); j++){
+                    if(prof_list[i].equals(professores_cadastrados.get(j).getMatricula())){
+                        professores_oferta.add(professores_cadastrados.get(j));
+                        break;
+                    }
+                }          
+            }
+            
+            
+            this.dispose();
+            new VisualizarOferta(professores_oferta,disciplinas_oferta, 3).setVisible(true);
+            
+            //passar para prox tela 
+            //semestre
+            //disciplinas_oferta
+            //professores_oferta
+            
+          
+            
             
         }else{
             if(edt_professores.getText().replaceAll(" ","").equals("")){
@@ -421,19 +429,6 @@ public class ConfigOferta extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btn_iniciar_ofertaActionPerformed
-
-    private void select_semestreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select_semestreActionPerformed
-        int semestre = select_semestre.getSelectedIndex()+1; 
-        try {
-            obrigatorias = Disciplina.disciplinasSemestre(semestre);
-        } catch (IOException ex) {
-            Logger.getLogger(ConfigOferta.class.getName()).log(Level.SEVERE, null, ex);
-        }        
-        String label_obrig = "";
-        for(int i=0; i<obrigatorias.size(); i++)
-            label_obrig = label_obrig +obrigatorias.get(i).getCodigo()+" ";
-        lbl_obrigatorias.setText(label_obrig);        
-    }//GEN-LAST:event_select_semestreActionPerformed
 
     private void btn_profActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_profActionPerformed
         try {
@@ -494,6 +489,8 @@ public class ConfigOferta extends javax.swing.JFrame {
             }
         });
     }
+    private  ArrayList<Professor> professores_oferta; 
+    private ArrayList<Disciplina> disciplinas_oferta; 
     private  ArrayList<Disciplina> disciplinas_cadastradas; 
     private  ArrayList<Professor> professores_cadastrados; 
     private  ArrayList<Disciplina> obrigatorias; 
@@ -521,6 +518,5 @@ public class ConfigOferta extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_config;
     private javax.swing.JLabel lbl_disciplinas;
     private javax.swing.JLabel lbl_obrigatorias;
-    private javax.swing.JComboBox<String> select_semestre;
     // End of variables declaration//GEN-END:variables
 }

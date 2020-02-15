@@ -1,6 +1,5 @@
-123,jose,true,false,false,dfbxcvbxc
-242424,helisson,false,true,false,COMP123,COMP158
-201700030314,Kalil,false,true,false,COMP094,COMP337
-123456789,jose,true,true,true,COMP789,COMP963
-4567899632,wendel,false,false,true,COMP145,COMP158
-159786345,filipe,false,true,false,COMP789,COMP1245
+5,Ricardo,false,true,false,COMP0461
+2,Beatriz Trinchao ,false,true,false,COMP0395,COMP0393,COMP0409
+3,Breno Piva,false,true,false,COMP0412,COMP0409,COMP0334
+4,Tarcisio da Rocha,false,false,true,COMP0461,COMP0470,COMP0418
+1,Andre Brito,false,true,false,COMP0393,COMP0455,COMP0334

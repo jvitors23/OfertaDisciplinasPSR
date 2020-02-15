@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Disciplina {
+public class Disciplina  {
     public String nome;
     public String codigo;
     public int creditos;
@@ -82,6 +82,20 @@ public class Disciplina {
         }
         buffRead.close();
         return disciplinas;
+    }
+    
+    public static Disciplina retornaDisciplina(String codigo) throws IOException{
+        ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
+        Disciplina disciplina = null;
+        disciplinas = retornaDisciplinas();
+        for(int i = 0; i < disciplinas.size(); i++){
+            if(disciplinas.get(i).getCodigo().equals(codigo)){
+                disciplina = disciplinas.get(i);
+                break;
+            }
+        }
+        
+        return disciplina;
     }
 
     @Override
