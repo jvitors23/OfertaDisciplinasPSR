@@ -46,7 +46,7 @@ public class ConstraintTurno implements Constraint<Professor, String> {
             else               
                 return false;            
         }else{
-            if((var1.isMatutino() || var1.isNoturno()) || value.equals("a_definir" + var1.getMatricula())){
+            if((var1.isMatutino() || var1.isNoturno()) || var1.isVespertino() || value.equals("a_definir" + var1.getMatricula())){
                 return true;
             }
             return false;  

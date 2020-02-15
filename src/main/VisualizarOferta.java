@@ -23,8 +23,7 @@ import main.aima.*;
 public class VisualizarOferta extends javax.swing.JFrame {
     
     private  ArrayList<Professor> professores_oferta; 
-    private ArrayList<Disciplina> disciplinas_oferta ; 
-  
+    private ArrayList<Disciplina> disciplinas_oferta ;   
     private ArrayList<Disciplina> disciplinas_dcomp;
     private ArrayList<Disciplina> disciplinas_outros_deptos ;
     
@@ -32,7 +31,7 @@ public class VisualizarOferta extends javax.swing.JFrame {
     /**
      * Creates new form VisualizarOferta
      */
-    public VisualizarOferta(ArrayList<Professor> professores_oferta, ArrayList<Disciplina> disciplinas_oferta, int semestre) {
+    public VisualizarOferta(ArrayList<Professor> professores_oferta, ArrayList<Disciplina> disciplinas_oferta) {
         initComponents();
         this.disciplinas_oferta = disciplinas_oferta;
         this.professores_oferta = professores_oferta;
@@ -43,7 +42,7 @@ public class VisualizarOferta extends javax.swing.JFrame {
         this.setResizable(false);
         setTitle("Info Nova Oferta");
         this.setLocationRelativeTo(null);
-        lbl_oferta.setText("Informações da Oferta Semestre: "+semestre);
+        
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     
         area_prof.setEditable(false);
@@ -92,7 +91,7 @@ public class VisualizarOferta extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lbl_oferta.setText("Informações da Oferta Semestre - ");
+        lbl_oferta.setText("Informações da Oferta Semestre 3 ");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -151,7 +150,7 @@ public class VisualizarOferta extends javax.swing.JFrame {
             }
         });
 
-        btn_gerar.setText("Nova Oferta");
+        btn_gerar.setText("Alocar disciplinas aos professores");
         btn_gerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_gerarActionPerformed(evt);
@@ -163,32 +162,31 @@ public class VisualizarOferta extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(btn_cancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_gerar)
-                .addGap(63, 63, 63))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel3))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(119, 119, 119)
+                                .addComponent(lbl_oferta)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(lbl_oferta)))
-                .addContainerGap(131, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                                .addComponent(btn_cancelar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_gerar)
+                                .addGap(35, 35, 35)))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,7 +230,9 @@ public class VisualizarOferta extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void btn_gerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerarActionPerformed
-       
+         
+        //otimizar o algoritmo reordenando os professor pelos que tem menos disciplinas alocadas
+        //ou menos preferencias
         
         //separa as disciplinas do dcomp das de outros deptos
         for(int i=0; i<disciplinas_oferta.size();i++){
@@ -242,10 +242,6 @@ public class VisualizarOferta extends javax.swing.JFrame {
                 this.disciplinas_dcomp.add(disciplinas_oferta.get(i));                
             }         
         }  
-        
-        
-        //tratamento para add disciplinas pra profs q trabalham outro turno
-       
         
         ProfessorDisciplina csp1 = null;
         FlexibleBacktrackingSolver strategy = new FlexibleBacktrackingSolver<Professor, String>();
@@ -284,8 +280,6 @@ public class VisualizarOferta extends javax.swing.JFrame {
 
             solucao = strategy.solve(csp1);
             
-            
-
             //tratar retorno vazio
             try{
                 resultado = solucao.get();                
@@ -295,12 +289,12 @@ public class VisualizarOferta extends javax.swing.JFrame {
                 break;                
             }   
             
-            
-            
             //adiciona a alocação retornada pelo algoritmo as disciplinas lecionadas pelos professores
             //remove as disciplinas já alocadas para a proxima execução
             for(int i=0; i<professores_oferta.size(); i++){
                 String disciplinaAux = resultado.getValue(resultado.getVariables().get(i));
+                int creditos_lecionados = resultado.getVariables().get(i).getCreditos_lecionados();
+                professores_oferta.get(i).setCreditos_lecionados(creditos_lecionados);
                 professores_oferta.get(i).lecionadas.add(disciplinaAux);
                 for(int j = 0; j < disciplinas_dcomp.size(); j++){
                     if(disciplinaAux.equals(disciplinas_dcomp.get(j).getCodigo())){
@@ -330,19 +324,41 @@ public class VisualizarOferta extends javax.swing.JFrame {
                 break; 
             }
             
-            
-            
-            
-            
-            for(int i=0; i<professores_oferta.size(); i++)
-                System.out.println(professores_oferta.get(i).getNome() + " " + professores_oferta.get(i).lecionadas.toString());
-              
         }
+      
+        //faz o tratamento da resposta para remover disciplinas a definir a mais
+        String disc = "";
+        for(int i=0; i<professores_oferta.size(); i++){
+            ArrayList<String> aux = new ArrayList<String>();
+            a = false; 
+            for(int j=0; j<professores_oferta.get(i).lecionadas.size(); j++){
+                disc =professores_oferta.get(i).lecionadas.get(j);
+                if(disc.charAt(0)=='C'){
+                    a = true; 
+                }
+                if(j==professores_oferta.get(i).lecionadas.size()-1 && a==false){
+                    aux.add("a_definir_"+professores_oferta.get(i).getMatricula());
+                    professores_oferta.get(i).setLecionadas(aux);
+                    break;
+                }    
+                
+                if(j==professores_oferta.get(i).lecionadas.size()-1 && a==true){
+                    for(int k=0; k<professores_oferta.get(i).lecionadas.size(); k++){
+                        if(professores_oferta.get(i).lecionadas.get(k).charAt(0)=='C'){
+                            aux.add(professores_oferta.get(i).lecionadas.get(k));
+                        }
+                    }
+                    professores_oferta.get(i).setLecionadas(aux);  
+                    break;
+                }         
+            }
+        }       
         
         for(int i=0; i<professores_oferta.size(); i++)
-            System.out.println(professores_oferta.get(i).lecionadas);
-//            System.out.println(professores_oferta.get(i).matricula + " " + professores_oferta.get(i).lecionadas.toString());
-            
+            System.out.println(professores_oferta.get(i).toString());
+        
+        this.dispose();
+        new ResultCSP1(professores_oferta, disciplinas_oferta).setVisible(true);
         
     }//GEN-LAST:event_btn_gerarActionPerformed
 

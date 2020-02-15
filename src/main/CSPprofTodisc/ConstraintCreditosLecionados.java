@@ -36,15 +36,21 @@ public class ConstraintCreditosLecionados implements Constraint<Professor, Strin
     @Override
     public boolean isSatisfiedWith(Assignment<Professor, String> assignment) {
         String atribuida = assignment.getValue(var1);
+        int creditos_disc = 0;
         try {
-            if(var1.getCreditos_lecionados()+Disciplina.retornaCreditos(atribuida)>12)
-                return false;
-            else 
-                return true;
+            creditos_disc = Disciplina.retornaCreditos(atribuida);
         } catch (IOException ex) {
             Logger.getLogger(ConstraintCreditosLecionados.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false; 
+       
+        if(var1.getCreditos_lecionados()+creditos_disc>12)
+            return false;
+        else{
+            var1.setCreditos_lecionados(var1.getCreditos_lecionados()+creditos_disc);
+            return true;
+        }               
+       
+       
              
     }   
 

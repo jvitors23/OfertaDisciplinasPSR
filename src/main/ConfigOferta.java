@@ -372,11 +372,13 @@ public class ConfigOferta extends javax.swing.JFrame {
         
         if(val_disc && val_cad_disc && val_prof && !edt_professores.getText().replaceAll(" ","").equals("")){
             String[] todas_disc = new String[disc_list.length+obrigatorias.size()];      
-            for(int i=0; i<disc_list.length; i++){
-                todas_disc[i] = disc_list[i];
-            }
+           
             for(int i=0; i<obrigatorias.size(); i++){
-                todas_disc[i+disc_list.length] = obrigatorias.get(i).getCodigo();
+                todas_disc[i] = obrigatorias.get(i).getCodigo();
+            }
+            
+             for(int i=0; i<disc_list.length; i++){
+                todas_disc[i+obrigatorias.size()] = disc_list[i];
             }
             
             for(int i=0; i<todas_disc.length;i++){ 
@@ -399,7 +401,7 @@ public class ConfigOferta extends javax.swing.JFrame {
             
             
             this.dispose();
-            new VisualizarOferta(professores_oferta,disciplinas_oferta, 3).setVisible(true);
+            new VisualizarOferta(professores_oferta,disciplinas_oferta).setVisible(true);
             
             //passar para prox tela 
             //semestre
