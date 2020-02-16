@@ -325,8 +325,7 @@ public class VisualizarOferta extends javax.swing.JFrame {
             }
             
         }
-        for(int i=0; i<professores_oferta.size(); i++)
-            System.out.println(professores_oferta.get(i).toString());
+        
       
         //faz o tratamento da resposta para remover disciplinas a definir a mais
         String disc = "";
@@ -356,8 +355,7 @@ public class VisualizarOferta extends javax.swing.JFrame {
             }
         }       
         
-        for(int i=0; i<professores_oferta.size(); i++)
-            System.out.println(professores_oferta.get(i).toString());
+        
         
         this.dispose();
         new ResultCSP1(professores_oferta, disciplinas_oferta).setVisible(true);

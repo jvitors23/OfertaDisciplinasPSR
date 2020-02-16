@@ -28,7 +28,7 @@ nenhuma disciplina ainda não alocada a algum professor, não esteja entre as pr
 sem uma disciplina, este professor ficará com sua disciplina a definir. 
 */
 public class ProfessorDisciplina extends CSP<Professor, String>{
-    public ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();;
+    public ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
     public List<Professor> professores = new ArrayList<Professor>();
     public ArrayList<String> disc_cods = new ArrayList<String>();
 

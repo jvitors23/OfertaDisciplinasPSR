@@ -37,6 +37,11 @@ public class Turma extends Variable{
     public void setHorario(String horario) {
         this.horario = horario;
     }
+
+    @Override
+    public String toString() {
+        return "Turma{" + "disciplina=" + disciplina + ", professor=" + professor + ", horario=" + horario + '}';
+    }
     
     
     

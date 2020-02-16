@@ -7,9 +7,15 @@ package main;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import main.CSPturmaToHorario.Horario;
+import main.CSPturmaToHorario.TurmaHorario;
+import main.aima.Assignment;
+import main.aima.FlexibleBacktrackingSolver;
 
 /**
  *
@@ -22,6 +28,7 @@ public class ResultCSP1 extends javax.swing.JFrame {
     
     private ArrayList<Disciplina> disciplinas_dcomp;
     private ArrayList<Disciplina> disciplinas_outros_deptos ;
+    private ArrayList<String> disc_nao_alocadas; 
     
     public ResultCSP1(ArrayList<Professor> professores_oferta, ArrayList<Disciplina> disciplinas_oferta){
         initComponents();
@@ -30,6 +37,43 @@ public class ResultCSP1 extends javax.swing.JFrame {
         this.professores_oferta = professores_oferta;
         this.disciplinas_dcomp = new ArrayList<Disciplina>();
         this.disciplinas_outros_deptos = new ArrayList<Disciplina>();
+        
+        String[] itens = new String[28];
+        itens[0]= "2T12 e 4T12";
+        itens[1]= "2T34 e 4T34";
+        itens[2]= "2T56 e 4T56";
+        itens[3]= "3T12 e 5T12";
+        itens[4]= "3T34 e 5T34";
+        itens[5]= "3T56 e 5T56";
+        itens[6]= "4T12 e 6T12";
+        itens[7]= "4T34 e 6T34";
+        itens[8]= "4T56 e 6T56";
+        itens[9]= "3T12 e 6T12";   
+        itens[10]= "3T34 e 6T34";    
+        itens[11]= "3T56 e 6T56";    
+        itens[12]= "2T12 e 5T12";    
+        itens[13]= "2T34 e 5T34";    
+        itens[14]= "2T56 e 5T56";    
+        itens[15]= "2T12 e 6T12";    
+        itens[16]= "2T34 e 6T34";    
+        itens[17]= "2T56 e 6T56";    
+        itens[18]= "2T12 e 2T34";    
+        itens[19]= "3T12 e 3T34";    
+        itens[20]= "4T12 e 4T34";    
+        itens[21]= "5T12 e 5T34";            
+        itens[22]= "6T12 e 6T34";  
+        itens[23]= "2T34 e 6T56";
+        itens[24]= "3T34 e 6T56";
+        itens[25]= "4T34 e 6T56";
+        itens[26]= "5T34 e 6T56";
+        itens[27]= "6T34 e 6T56";        
+        DefaultComboBoxModel model1 = new DefaultComboBoxModel(itens);
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel(itens);
+        
+        horario_fisica.setModel(model1);
+        horario_calculo.setModel(model2);
+                
+                
         
         this.setResizable(false);
         setTitle("Resultado alocação disciplinas para os professores");
@@ -65,7 +109,7 @@ public class ResultCSP1 extends javax.swing.JFrame {
         }
         boolean a = false; 
         
-        ArrayList<String> disc_nao_alocadas = new ArrayList<String>();
+        disc_nao_alocadas = new ArrayList<String>();
         for(int i=0; i<disciplinas_dcomp.size(); i++){
             a=false; 
             for(int j=0; j<disc_alocadas.size(); j++){
@@ -124,12 +168,10 @@ public class ResultCSP1 extends javax.swing.JFrame {
         btn_cancelar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        edt_fisi0262 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        edt_mat0153 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        horario_fisica = new javax.swing.JComboBox<>();
+        horario_calculo = new javax.swing.JComboBox<>();
 
         jLabel1.setText("jLabel1");
 
@@ -219,7 +261,7 @@ public class ResultCSP1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -268,9 +310,9 @@ public class ResultCSP1 extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("* A alocação será feita considerando apenas");
+        jLabel6.setText("* A alocação será feita considerando apenas os professores");
 
-        jLabel7.setText("os professores que tiveram disciplinas alocadas.");
+        jLabel7.setText("que tiveram disciplinas alocadas.");
 
         btn_cancelar.setText("Cancelar");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -281,83 +323,61 @@ public class ResultCSP1 extends javax.swing.JFrame {
 
         jLabel8.setText("FISI0262");
 
-        jLabel9.setText("Defina o horário das disciplinas de outros departamentos:");
-
-        edt_fisi0262.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edt_fisi0262ActionPerformed(evt);
-            }
-        });
+        jLabel9.setText("Selecione o horário das disciplinas de outros departamentos:");
 
         jLabel10.setText("MAT0153");
 
-        jLabel11.setText("*Digite os horários segundo notação do SIGAA");
+        horario_fisica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel12.setText("Essas disciplinas são obrigatórias e devem ser ofertadas");
-
-        jLabel14.setText("no periodo vespertino. Ambas de 4 créditos.");
+        horario_calculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(btn_refazer)
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel10))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(edt_fisi0262)
-                                    .addComponent(edt_mat0153)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addComponent(jLabel6))
-                                            .addComponent(btn_cancelar))
-                                        .addGap(36, 46, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btn_iniciar_alocacao))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel11)
-                                            .addComponent(jLabel14)
-                                            .addComponent(jLabel12))))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(77, 77, 77))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(73, 73, 73))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel6)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(btn_refazer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(btn_iniciar_alocacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(btn_cancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addComponent(jLabel11))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(86, 86, 86)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(horario_fisica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(horario_calculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel9))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(77, 77, 77))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,35 +390,32 @@ public class ResultCSP1 extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_refazer))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(edt_fisi0262, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(horario_fisica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(edt_mat0153, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11)
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel12)
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_iniciar_alocacao)
-                            .addComponent(btn_cancelar))
+                            .addComponent(horario_calculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7))))
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_refazer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(btn_iniciar_alocacao))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_cancelar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -427,25 +444,88 @@ public class ResultCSP1 extends javax.swing.JFrame {
 
     private void btn_iniciar_alocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciar_alocacaoActionPerformed
         // TODO add your handling code here:
-        String horario1 = edt_fisi0262.getText().replace(" ", "");
-        String horario2 = edt_mat0153.getText().replace(" ", "");
-        boolean val = false; 
         
-        if(horario1.equals("") || horario2.equals("")){
-            val = false; 
-            JOptionPane.showMessageDialog(this.rootPane, "Defina horário para as disciplinas!!");
-        }else{
-            val=true;
+        if(horario_fisica.getSelectedItem().equals(horario_calculo.getSelectedItem())){
+            JOptionPane.showMessageDialog(this.rootPane, "Disciplinas FISI0262 e MAT0153 devem ter horarios distintos!");
+            
+        }else{            
+            String[] aulas_fisica;
+            aulas_fisica = horario_fisica.getModel().getElementAt(horario_fisica.getSelectedIndex()).split(" e ");
+            
+            String[] aulas_calculo;
+            aulas_calculo = horario_calculo.getModel().getElementAt(horario_calculo.getSelectedIndex()).split(" e ");
+            
+            ArrayList<Turma> turmas_oferta = new ArrayList<Turma>();
+            for(int i=0; i<professores_oferta.size(); i++){
+                for (int j = 0; j < professores_oferta.get(i).lecionadas.size(); j++) {
+                    if(professores_oferta.get(i).lecionadas.get(j).charAt(0)=='C'){
+                        try {
+                            turmas_oferta.add(new Turma(Disciplina.retornaDisciplina(professores_oferta.get(i).lecionadas.get(j)),professores_oferta.get(i) ));
+                        } catch (IOException ex) {
+                            Logger.getLogger(ResultCSP1.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }                
+            }      
+          
+            TurmaHorario csp2 = null; 
+            
+            FlexibleBacktrackingSolver strategy = new FlexibleBacktrackingSolver<Turma, Horario>();
+            Assignment<Turma, Horario> resultado = null;
+            Optional<Assignment<Turma, Horario>> solucao; 
+            
+            
+            try {
+                csp2 = new TurmaHorario(turmas_oferta, aulas_fisica, aulas_calculo);
+            } catch (IOException ex) {
+                Logger.getLogger(ResultCSP1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            solucao = strategy.solve(csp2);
+            
+            
+            try{
+                resultado = solucao.get();               
+                
+
+                
+            }catch(java.util.NoSuchElementException e){
+                
+                System.out.println("Não foi possível alocar");
+                              
+            }   
+            
+            Horario aux; 
+            String horario; 
+            for (int i = 0; i < turmas_oferta.size() ; i++) {
+                aux = resultado.getValue(turmas_oferta.get(i));
+                horario = aux.aulas[0]+" "+aux.aulas[1]+" "+aux.aulas[2];
+                turmas_oferta.get(i).horario = horario;
+                
+                
+            }
+            
+            for (int i = 0; i < professores_oferta.size(); i++) {
+                for (int j = 0; j < turmas_oferta.size(); j++) {
+                    if(professores_oferta.get(i).getNome().equals(turmas_oferta.get(j).professor.nome)){
+                        professores_oferta.get(i).setCreditos_lecionados(turmas_oferta.get(j).professor.getCreditos_lecionados());
+                    }
+                }
+            }
+            
+            
+            this.dispose();
+            
+            new ResultadoCSP2(professores_oferta, disciplinas_oferta, turmas_oferta, disc_nao_alocadas).setVisible(true);
+            
+            
+            
+            
+            
+            
+            
         }
         
-//        if(val){
-//            for(int i = 0; i<professores_)
-//            
-//            
-//            
-//            
-//        }
-//        
         
     }//GEN-LAST:event_btn_iniciar_alocacaoActionPerformed
 
@@ -454,10 +534,6 @@ public class ResultCSP1 extends javax.swing.JFrame {
         this.dispose();
         new Inicio().setVisible(true);
     }//GEN-LAST:event_btn_cancelarActionPerformed
-
-    private void edt_fisi0262ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edt_fisi0262ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edt_fisi0262ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -501,13 +577,11 @@ public class ResultCSP1 extends javax.swing.JFrame {
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_iniciar_alocacao;
     private javax.swing.JButton btn_refazer;
-    private javax.swing.JTextField edt_fisi0262;
-    private javax.swing.JTextField edt_mat0153;
+    private javax.swing.JComboBox<String> horario_calculo;
+    private javax.swing.JComboBox<String> horario_fisica;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
