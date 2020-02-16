@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,7 +18,8 @@ import java.util.logging.Logger;
 public class ResultCSP1 extends javax.swing.JFrame {
 
     private  ArrayList<Professor> professores_oferta; 
-    private ArrayList<Disciplina> disciplinas_oferta ;   
+    private ArrayList<Disciplina> disciplinas_oferta ; 
+    
     private ArrayList<Disciplina> disciplinas_dcomp;
     private ArrayList<Disciplina> disciplinas_outros_deptos ;
     
@@ -293,7 +295,7 @@ public class ResultCSP1 extends javax.swing.JFrame {
 
         jLabel12.setText("Essas disciplinas são obrigatórias e devem ser ofertadas");
 
-        jLabel14.setText("no periodo vespertino.");
+        jLabel14.setText("no periodo vespertino. Ambas de 4 créditos.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -425,6 +427,26 @@ public class ResultCSP1 extends javax.swing.JFrame {
 
     private void btn_iniciar_alocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciar_alocacaoActionPerformed
         // TODO add your handling code here:
+        String horario1 = edt_fisi0262.getText().replace(" ", "");
+        String horario2 = edt_mat0153.getText().replace(" ", "");
+        boolean val = false; 
+        
+        if(horario1.equals("") || horario2.equals("")){
+            val = false; 
+            JOptionPane.showMessageDialog(this.rootPane, "Defina horário para as disciplinas!!");
+        }else{
+            val=true;
+        }
+        
+//        if(val){
+//            for(int i = 0; i<professores_)
+//            
+//            
+//            
+//            
+//        }
+//        
+        
     }//GEN-LAST:event_btn_iniciar_alocacaoActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed

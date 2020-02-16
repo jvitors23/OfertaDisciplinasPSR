@@ -482,7 +482,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel14">
           <Properties>
-            <Property name="text" type="java.lang.String" value="no periodo vespertino."/>
+            <Property name="text" type="java.lang.String" value="no periodo vespertino. Ambas de 4 cr&#xe9;ditos."/>
           </Properties>
         </Component>
       </SubComponents>
