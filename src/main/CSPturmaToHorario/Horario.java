@@ -79,6 +79,17 @@ public class Horario {
                 domain.add(new Horario("4M12","6M12",""));
                 domain.add(new Horario("4M34","6M34",""));
                 domain.add(new Horario("4M56","6M56",""));
+                
+                domain.add(new Horario("2M12","6M12",""));
+                domain.add(new Horario("2M34","6M34",""));
+                domain.add(new Horario("2M56","6M56",""));
+                domain.add(new Horario("2M12","5M12",""));
+                domain.add(new Horario("2M34","5M34",""));
+                domain.add(new Horario("2M56","5M56",""));
+                domain.add(new Horario("3M12","6M12",""));
+                domain.add(new Horario("3M34","6M34",""));
+                domain.add(new Horario("3M56","6M56",""));
+                
                 //manha mesmo dia
                 domain.add(new Horario("2M12","2M34",""));
                 domain.add(new Horario("2M34","2M56",""));
@@ -100,6 +111,16 @@ public class Horario {
                 domain.add(new Horario("4T12","6T12",""));
                 domain.add(new Horario("4T34","6T34",""));
                 domain.add(new Horario("4T56","6T56",""));
+                
+                domain.add(new Horario("2T12","6T12",""));
+                domain.add(new Horario("2T34","6T34",""));
+                domain.add(new Horario("2T56","6T56",""));
+                domain.add(new Horario("2T12","5T12",""));
+                domain.add(new Horario("2T34","5T34",""));
+                domain.add(new Horario("2T56","5T56",""));
+                domain.add(new Horario("3T12","6T12",""));
+                domain.add(new Horario("3T34","6T34",""));
+                domain.add(new Horario("3T56","6T56",""));
                 //tarde mesmo dia
                 domain.add(new Horario("2T12","2T34",""));
                 domain.add(new Horario("2T34","2T56",""));
@@ -114,13 +135,17 @@ public class Horario {
                 //noite dois dias diferentes
                 domain.add(new Horario("2N12","4N12",""));
                 domain.add(new Horario("2N34","4N34",""));
-                domain.add(new Horario("2N56","4N56",""));
                 domain.add(new Horario("3N12","5N12",""));
                 domain.add(new Horario("3N34","5N34",""));
-                domain.add(new Horario("3N56","5N56",""));
                 domain.add(new Horario("4N12","6N12",""));
                 domain.add(new Horario("4N34","6N34",""));
-                domain.add(new Horario("4N56","6N56",""));
+                
+                domain.add(new Horario("2N12","5N12",""));
+                domain.add(new Horario("2N34","5N34",""));
+                domain.add(new Horario("3N12","6N12",""));
+                domain.add(new Horario("3N34","6N34",""));
+                domain.add(new Horario("2N12","6N12",""));
+                domain.add(new Horario("2N34","6N34",""));
                 //noite mesmo dia
                 domain.add(new Horario("2N12","2N34",""));
                 domain.add(new Horario("3N12","3N34",""));
