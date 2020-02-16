@@ -1,20 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
 
 import main.CSPprofTodisc.ProfessorDisciplina;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import main.aima.*;
-
 
 /**
  *
@@ -25,20 +17,16 @@ public class VisualizarOferta extends javax.swing.JFrame {
     private  ArrayList<Professor> professores_oferta; 
     private ArrayList<Disciplina> disciplinas_oferta ;   
     private ArrayList<Disciplina> disciplinas_dcomp;
-    private ArrayList<Disciplina> disciplinas_outros_deptos ;
-    
+    private ArrayList<Disciplina> disciplinas_outros_deptos ;    
 
-    /**
-     * Creates new form VisualizarOferta
-     */
+    
     public VisualizarOferta(ArrayList<Professor> professores_oferta, ArrayList<Disciplina> disciplinas_oferta) {
         initComponents();
         this.disciplinas_oferta = disciplinas_oferta;
         this.professores_oferta = professores_oferta;
         this.disciplinas_dcomp = new ArrayList<Disciplina>();
         this.disciplinas_outros_deptos = new ArrayList<Disciplina>();
-      
-        
+              
         this.setResizable(false);
         setTitle("Info Nova Oferta");
         this.setLocationRelativeTo(null);
@@ -58,8 +46,6 @@ public class VisualizarOferta extends javax.swing.JFrame {
             area_disc.append("Nome: "+disciplinas_oferta.get(i).getNome()+"\n");
             area_disc.append("Codigo: "+disciplinas_oferta.get(i).getCodigo()+"\n");           
         }
-        
-        
         
     }
 
@@ -91,6 +77,7 @@ public class VisualizarOferta extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        lbl_oferta.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         lbl_oferta.setText("Informações da Oferta Semestre 3 ");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -164,14 +151,9 @@ public class VisualizarOferta extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel3))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(119, 119, 119)
-                                .addComponent(lbl_oferta)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jLabel3)
+                        .addGap(0, 373, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,6 +169,10 @@ public class VisualizarOferta extends javax.swing.JFrame {
                                 .addComponent(btn_gerar)
                                 .addGap(35, 35, 35)))))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(106, 106, 106)
+                .addComponent(lbl_oferta)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +191,7 @@ public class VisualizarOferta extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cancelar)
                     .addComponent(btn_gerar))
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addGap(0, 7, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -250,7 +236,7 @@ public class VisualizarOferta extends javax.swing.JFrame {
         
         //adiciona disciplinas a definir
         for(int i = 0 ; i<professores_oferta.size(); i++){   
-            Disciplina d = new Disciplina(0, "A definir", "a_definir"+professores_oferta.get(i).getMatricula(),0, false);
+            Disciplina d = new Disciplina(0, "A definir", "a_definir"+professores_oferta.get(i).getMatricula(),0);
             disciplinas_dcomp.add(d);    
         }    
         
@@ -265,7 +251,7 @@ public class VisualizarOferta extends javax.swing.JFrame {
                         a = true;                         
                     }
                     if(j==disciplinas_dcomp.size()-1 && a==false){
-                        Disciplina d = new Disciplina(0, "A definir", "a_definir"+professores_oferta.get(i).getMatricula(),0, false);
+                        Disciplina d = new Disciplina(0, "A definir", "a_definir"+professores_oferta.get(i).getMatricula(),0);
                         disciplinas_dcomp.add(d);     
                         j++;
                     }
@@ -355,10 +341,12 @@ public class VisualizarOferta extends javax.swing.JFrame {
             }
         }       
         
-        
-        
         this.dispose();
-        new ResultCSP1(professores_oferta, disciplinas_oferta).setVisible(true);
+        try {
+            new ResultCSP1(professores_oferta, disciplinas_oferta).setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(VisualizarOferta.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_btn_gerarActionPerformed
 

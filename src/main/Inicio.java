@@ -6,9 +6,11 @@
 package main;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import main.aima.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import main.CSPturmaToHorario.Horario;
 
 /**
@@ -21,10 +23,7 @@ public class Inicio extends javax.swing.JFrame {
      * Creates new form Inicio
      */
     public Inicio() {
-        Horario h = new Horario(new String[]{"meupau","noseu","cu"});
-        for (int i = 0; i < h.aulas.length; i++) {
-            System.out.println(h.aulas[i]);
-        }
+        
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -280,12 +279,28 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        ArrayList<Professor> professores_cadastrados = null;
         try {
-            new ConfigOferta().setVisible(true);
+            professores_cadastrados = Professor.retornaProfessores();
         } catch (IOException ex) {
             Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        if(professores_cadastrados==null){
+            JOptionPane.showMessageDialog(this.rootPane, "Não existem professores cadastrados!");
+            this.dispose();
+            new Cadastro().setVisible(true);
+        }else{
+            
+            this.dispose();
+            try {
+                new ConfigOferta().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btn_cadastrar_professorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrar_professorActionPerformed
@@ -346,7 +361,7 @@ public class Inicio extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Inicio().setVisible(true);
-                
+               
             }
         });
         

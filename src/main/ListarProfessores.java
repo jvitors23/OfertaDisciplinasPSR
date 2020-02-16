@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package main;
 import main.aima.*;
 import java.io.BufferedReader;
@@ -20,122 +16,77 @@ import java.util.logging.Logger;
  * @author jvss2
  */
 public class ListarProfessores extends javax.swing.JFrame {
-
-    /**
-     * Creates new form ListarProfessores
-     */
+    
     public ListarProfessores() throws FileNotFoundException, IOException {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        setTitle("Listar Professores");
-
-    
+        setTitle("Listar Professores");    
         text_area.setLayout(null);
         text_area.setEditable(false);
         
-        PrintStream outputPrintStream = new PrintStream(new OutputStream() {
-            @Override
-            public void write(int b) throws IOException {
-                text_area.append(String.valueOf((char) b));
-            }
-        });
-        System.setOut(outputPrintStream);      
-        
-        String[] professor;        
-        BufferedReader buffRead = new BufferedReader(new FileReader("professor.txt"));
-        String linha = "";
-        ArrayList<String> preferencias = null; 
-        while (true) {
-            try {
-                linha = buffRead.readLine();
-            } catch (IOException ex) {
-                Logger.getLogger(Disciplina.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            if (linha != null) {
-                professor = linha.split(",");              
-                
+        ArrayList<Professor> professores_cadastrados = Professor.retornaProfessores();  
+        if(professores_cadastrados != null)
+            for (int i = 0; i < professores_cadastrados.size(); i++) {
                 String matutino = "";
-                String vespertino = ""; 
+                String vespertino = "";
                 String noturno = "";
-             
-                if(professor[2].equals("true"))
+                text_area.append("==========================================\n");
+                text_area.append("Nome: "+professores_cadastrados.get(i).getNome()+"\n");
+                text_area.append("Matricula: "+professores_cadastrados.get(i).getMatricula()+"\n");
+
+                if(professores_cadastrados.get(i).isMatutino())
                     matutino = "Matutino";
-                if(professor[3].equals("true"))
+                if(professores_cadastrados.get(i).isVespertino())
                     vespertino = "Vespertino";
-                if(professor[4].equals("true"))
-                    noturno = "Noturno";              
-                
-                System.out.println("=============");  
-                System.out.println("Nome: "+professor[1]);
-                System.out.println("Matricula: "+professor[0]+
-                        "\nTurnos de trabalho: "+matutino+" "+ vespertino+" "+noturno);
-                System.out.println("Preferencias: ");
-                for(int i=5; i<professor.length; i++){
-                    System.out.println(professor[i]);                    
-                }               
-                
-            }else
-                break;
+                if(professores_cadastrados.get(i).isNoturno())
+                    noturno = "Noturno";           
+
+                text_area.append("Turnos de trabalho: "+matutino+" "+vespertino+" "+noturno+"\n");
+                text_area.append("Preferencias: \n");
+                for (int j = 0; j < professores_cadastrados.get(i).preferencias.size(); j++) {
+                    text_area.append(professores_cadastrados.get(i).preferencias.get(j)+"\n");                
+                }            
+            }
+        else{
+            text_area.append("Não existem professores cadastrados!");
         }
-        buffRead.close();        
     }
 
     ListarProfessores(boolean menu) throws IOException {
         initComponents();
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-       
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);       
         setTitle("Listar Professores");
-        btn_menu.setVisible(false);
-    
+        btn_menu.setVisible(false);    
         text_area.setLayout(null);
         text_area.setEditable(false);
         
-        PrintStream outputPrintStream = new PrintStream(new OutputStream() {
-            @Override
-            public void write(int b) throws IOException {
-                text_area.append(String.valueOf((char) b));
-            }
-        });
-        System.setOut(outputPrintStream);      
-        
-        String[] professor;        
-        BufferedReader buffRead = new BufferedReader(new FileReader("professor.txt"));
-        String linha = "";
-        ArrayList<String> preferencias = null; 
-        while (true) {
-            try {
-                linha = buffRead.readLine();
-            } catch (IOException ex) {
-                Logger.getLogger(Disciplina.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            if (linha != null) {
-                professor = linha.split(",");              
-                
+        ArrayList<Professor> professores_cadastrados = Professor.retornaProfessores();  
+        if(professores_cadastrados != null)
+            for (int i = 0; i < professores_cadastrados.size(); i++) {
                 String matutino = "";
-                String vespertino = ""; 
+                String vespertino = "";
                 String noturno = "";
-             
-                if(professor[2].equals("true"))
+                text_area.append("==========================================\n");
+                text_area.append("Nome: "+professores_cadastrados.get(i).getNome()+"\n");
+                text_area.append("Matricula: "+professores_cadastrados.get(i).getMatricula()+"\n");
+
+                if(professores_cadastrados.get(i).isMatutino())
                     matutino = "Matutino";
-                if(professor[3].equals("true"))
+                if(professores_cadastrados.get(i).isVespertino())
                     vespertino = "Vespertino";
-                if(professor[4].equals("true"))
-                    noturno = "Noturno";              
-                
-                System.out.println("=============");  
-                System.out.println("Nome: "+professor[1]);
-                System.out.println("Matricula: "+professor[0]+
-                        "\nTurnos de trabalho: "+matutino+" "+ vespertino+" "+noturno);
-                System.out.println("Preferencias: ");
-                for(int i=5; i<professor.length; i++){
-                    System.out.println(professor[i]);                    
-                }               
-                
-            }else
-                break;
-        }
-        buffRead.close();        
+                if(professores_cadastrados.get(i).isNoturno())
+                    noturno = "Noturno";           
+
+                text_area.append("Turnos de trabalho: "+matutino+" "+vespertino+" "+noturno+"\n");
+                text_area.append("Preferencias: \n");
+                for (int j = 0; j < professores_cadastrados.get(i).preferencias.size(); j++) {
+                    text_area.append(professores_cadastrados.get(i).preferencias.get(j)+"\n");                
+                }            
+            }
+        else{
+            text_area.append("Não existem professores cadastrados!");
+        }  
     }
 
   
@@ -157,6 +108,7 @@ public class ListarProfessores extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        lbl_listar_prof.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         lbl_listar_prof.setText("Listagem de  Professores");
 
         text_area.setColumns(20);
@@ -185,7 +137,7 @@ public class ListarProfessores extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(232, 232, 232)
                 .addComponent(lbl_listar_prof)
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +148,7 @@ public class ListarProfessores extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_menu)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

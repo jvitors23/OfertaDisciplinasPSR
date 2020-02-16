@@ -1,9 +1,12 @@
 package main;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import main.aima.*;
 
 public class Professor extends Variable {
@@ -50,9 +53,7 @@ public class Professor extends Variable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-  
+    } 
 
     public ArrayList<String> getPreferencias() {
         return preferencias;
@@ -99,7 +100,12 @@ public class Professor extends Variable {
         String[] professor;
         
         ArrayList<Professor> professores = new ArrayList();
-        BufferedReader buffRead = new BufferedReader(new FileReader("professor.txt"));
+        BufferedReader buffRead;
+        try {
+            buffRead = new BufferedReader(new FileReader("professor.txt"));
+        } catch (FileNotFoundException ex) {
+            return null;
+        }
         String linha = "";
         while (true) {
             ArrayList<String> pref = new ArrayList<String>();

@@ -29,40 +29,23 @@ public class ListarDisciplinas extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setTitle("Listar Disciplinas");
-        this.setResizable(false);
-    
+        this.setResizable(false);    
         text_area.setLayout(null);
         text_area.setEditable(false);
         
-        PrintStream outputPrintStream = new PrintStream(new OutputStream() {
-            @Override
-            public void write(int b) throws IOException {
-                text_area.append(String.valueOf((char) b));
-            }
-        });
-        System.setOut(outputPrintStream);      
+        ArrayList<Disciplina> disciplinas_cadastradas = Disciplina.retornaDisciplinas();
         
-        String[] disciplina = new String[5];
-        ArrayList<Disciplina> disciplinas = new ArrayList();
-        BufferedReader buffRead = new BufferedReader(new FileReader("disciplinas.txt"));
-        String linha = "";
-        while (true) {
-            try {
-                linha = buffRead.readLine();
-            } catch (IOException ex) {
-                Logger.getLogger(Disciplina.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            if (linha != null) {
-                disciplina = linha.split(";");                
-                Disciplina aux = new Disciplina(Integer.parseInt(disciplina[0]), disciplina[2], disciplina[1], Integer.parseInt(disciplina[3]), Boolean.parseBoolean(disciplina[4]));
-                System.out.println("=============");  
-                System.out.println("Nome: "+aux.getNome());
-                System.out.println("Codigo: "+aux.getCodigo()+"\nCreditos: "+aux.getCreditos()+"\nSemestre obrigatorio: "+aux.getSemestreObrigatorio());
-              
-            }else
-                break;
+        for (int i = 0; i < disciplinas_cadastradas.size(); i++) {
+            text_area.append("=====================================================\n");
+            text_area.append("Nome: "+disciplinas_cadastradas.get(i).getNome()+"\n");
+            text_area.append("Codigo: "+disciplinas_cadastradas.get(i).getCodigo()+"\n");
+            text_area.append("Semestre Obrigatório: "+disciplinas_cadastradas.get(i).getSemestreObrigatorio()+"\n");
+            text_area.append("Creditos: "+disciplinas_cadastradas.get(i).getCreditos()+"\n");
+            
         }
-        buffRead.close();        
+           
+        
+        
         
     }
 
@@ -77,36 +60,16 @@ public class ListarDisciplinas extends javax.swing.JFrame {
         text_area.setLayout(null);
         text_area.setEditable(false);
         
-        PrintStream outputPrintStream = new PrintStream(new OutputStream() {
-            @Override
-            public void write(int b) throws IOException {
-                text_area.append(String.valueOf((char) b));
-            }
-        });
-        System.setOut(outputPrintStream);      
+        ArrayList<Disciplina> disciplinas_cadastradas = Disciplina.retornaDisciplinas();
         
-        String[] disciplina = new String[5];
-        ArrayList<Disciplina> disciplinas = new ArrayList();
-        BufferedReader buffRead = new BufferedReader(new FileReader("disciplinas.txt"));
-        String linha = "";
-        while (true) {
-            try {
-                linha = buffRead.readLine();
-            } catch (IOException ex) {
-                Logger.getLogger(Disciplina.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            if (linha != null) {
-                disciplina = linha.split(";");                
-                Disciplina aux = new Disciplina(Integer.parseInt(disciplina[0]), disciplina[2], disciplina[1], Integer.parseInt(disciplina[3]), Boolean.parseBoolean(disciplina[4]));
-                System.out.println("=============");  
-                System.out.println("Nome: "+aux.getNome());
-                System.out.println("Codigo: "+aux.getCodigo()+"\nCreditos: "+aux.getCreditos()+"\nSemestre obrigatorio: "+aux.getSemestreObrigatorio());
-              
-            }else
-                break;
+        for (int i = 0; i < disciplinas_cadastradas.size(); i++) {
+            text_area.append("=====================================================\n");
+            text_area.append("Nome: "+disciplinas_cadastradas.get(i).getNome()+"\n");
+            text_area.append("Codigo: "+disciplinas_cadastradas.get(i).getCodigo()+"\n");
+            text_area.append("Semestre Obrigatório: "+disciplinas_cadastradas.get(i).getSemestreObrigatorio()+"\n");
+            text_area.append("Creditos: "+disciplinas_cadastradas.get(i).getCreditos()+"\n");
+            
         }
-        buffRead.close();  
-        
         
         
     }
@@ -128,6 +91,7 @@ public class ListarDisciplinas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        lbl_listar.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         lbl_listar.setText("Listagem de Disciplinas ");
 
         text_area.setColumns(20);
@@ -146,17 +110,19 @@ public class ListarDisciplinas extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(279, 279, 279)
+                        .addComponent(btn_menu)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(246, Short.MAX_VALUE)
-                .addComponent(lbl_listar)
-                .addGap(236, 236, 236))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(279, 279, 279)
-                .addComponent(btn_menu)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(237, 237, 237)
+                .addComponent(lbl_listar)
+                .addContainerGap(245, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -50,17 +50,14 @@
                               <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                               <Component id="btn_cadastrar" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="lbl_turno" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                  <Component id="cb_matutino" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                  <Component id="cb_vespertino" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="cb_noturno" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="edt_preferencias" min="-2" pref="407" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lbl_turno" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="cb_matutino" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="cb_vespertino" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                              <Component id="cb_noturno" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="lbl_exemplo" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbl_campos_obrigatorios" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -69,6 +66,7 @@
                       </Group>
                       <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="edt_preferencias" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -77,9 +75,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="lbl_cadastrar_professor" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="edt_nome" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbl_nome" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -121,6 +119,9 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="lbl_cadastrar_professor">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="3"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Cadastrar Professor"/>
       </Properties>
     </Component>
@@ -172,7 +173,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lbl_preferencias">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Prefer&#xea;ncia de Disciplinas:"/>
+        <Property name="text" type="java.lang.String" value="Prefer&#xea;ncia de Disciplinas*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btn_cancelar">
@@ -205,7 +206,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lbl_dica">
       <Properties>
-        <Property name="text" type="java.lang.String" value="O professor pode escolher 0 (zero) ou mais disciplinas preferenciais. "/>
+        <Property name="text" type="java.lang.String" value="O professor pode escolher entre 3 e 5 disciplinas preferenciais. "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">

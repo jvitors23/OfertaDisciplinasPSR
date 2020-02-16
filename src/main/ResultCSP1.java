@@ -30,7 +30,7 @@ public class ResultCSP1 extends javax.swing.JFrame {
     private ArrayList<Disciplina> disciplinas_outros_deptos ;
     private ArrayList<String> disc_nao_alocadas; 
     
-    public ResultCSP1(ArrayList<Professor> professores_oferta, ArrayList<Disciplina> disciplinas_oferta){
+    public ResultCSP1(ArrayList<Professor> professores_oferta, ArrayList<Disciplina> disciplinas_oferta) throws IOException{
         initComponents();
         
         this.disciplinas_oferta = disciplinas_oferta;
@@ -62,18 +62,16 @@ public class ResultCSP1 extends javax.swing.JFrame {
         itens[20]= "4T12 e 4T34";    
         itens[21]= "5T12 e 5T34";            
         itens[22]= "6T12 e 6T34";  
-        itens[23]= "2T34 e 6T56";
-        itens[24]= "3T34 e 6T56";
-        itens[25]= "4T34 e 6T56";
-        itens[26]= "5T34 e 6T56";
+        itens[23]= "2T34 e 2T56";
+        itens[24]= "3T34 e 3T56";
+        itens[25]= "4T34 e 4T56";
+        itens[26]= "5T34 e 5T56";
         itens[27]= "6T34 e 6T56";        
         DefaultComboBoxModel model1 = new DefaultComboBoxModel(itens);
         DefaultComboBoxModel model2 = new DefaultComboBoxModel(itens);
         
         horario_fisica.setModel(model1);
-        horario_calculo.setModel(model2);
-                
-                
+        horario_calculo.setModel(model2);      
         
         this.setResizable(false);
         setTitle("Resultado alocação disciplinas para os professores");
@@ -123,7 +121,11 @@ public class ResultCSP1 extends javax.swing.JFrame {
         }
         
         for(int i=0; i<disc_nao_alocadas.size(); i++){
-            area_disc_sem_prof.append(disc_nao_alocadas.get(i)+"\n");
+            Disciplina d = Disciplina.retornaDisciplina(disc_nao_alocadas.get(i));
+            area_disc_sem_prof.append("=======================\n");
+            area_disc_sem_prof.append(d.getNome()+"\n");
+            area_disc_sem_prof.append(d.getCodigo()+"\n");
+            
         }
         
         
@@ -516,7 +518,11 @@ public class ResultCSP1 extends javax.swing.JFrame {
             
             this.dispose();
             
-            new ResultadoCSP2(professores_oferta, disciplinas_oferta, turmas_oferta, disc_nao_alocadas).setVisible(true);
+            try {
+                new ResultadoCSP2(professores_oferta, disciplinas_oferta, turmas_oferta, disc_nao_alocadas, aulas_fisica, aulas_calculo).setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(ResultCSP1.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
             
             

@@ -9,6 +9,7 @@ import main.aima.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -62,6 +63,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        lbl_cadastrar_professor.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         lbl_cadastrar_professor.setText("Cadastrar Professor");
 
         edt_nome.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +99,7 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        lbl_preferencias.setText("Preferência de Disciplinas:");
+        lbl_preferencias.setText("Preferência de Disciplinas*");
 
         btn_cancelar.setText("Cancelar");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +119,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         lbl_campos_obrigatorios.setText("* Campos obrigatórios");
 
-        lbl_dica.setText("O professor pode escolher 0 (zero) ou mais disciplinas preferenciais. ");
+        lbl_dica.setText("O professor pode escolher entre 3 e 5 disciplinas preferenciais. ");
 
         jLabel3.setText("O professor deve escolher pelo menos um dos 3 (três) turnos.");
 
@@ -147,29 +149,28 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addComponent(btn_cancelar)
                                 .addGap(69, 69, 69)
                                 .addComponent(btn_cadastrar))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lbl_turno)
-                                    .addGap(39, 39, 39)
-                                    .addComponent(cb_matutino)
-                                    .addGap(36, 36, 36)
-                                    .addComponent(cb_vespertino)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cb_noturno))
-                                .addComponent(edt_preferencias, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbl_turno)
+                                .addGap(39, 39, 39)
+                                .addComponent(cb_matutino)
+                                .addGap(36, 36, 36)
+                                .addComponent(cb_vespertino)
+                                .addGap(51, 51, 51)
+                                .addComponent(cb_noturno))
                             .addComponent(lbl_exemplo)
                             .addComponent(lbl_campos_obrigatorios)
                             .addComponent(lbl_dica)
                             .addComponent(jLabel3))
-                        .addGap(0, 8, Short.MAX_VALUE)))
+                        .addGap(0, 8, Short.MAX_VALUE))
+                    .addComponent(edt_preferencias, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addComponent(lbl_cadastrar_professor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(edt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_nome))
@@ -236,32 +237,59 @@ public class Cadastro extends javax.swing.JFrame {
         String matutino = Boolean.toString(cb_matutino.isSelected());
         String vespertino = Boolean.toString(cb_vespertino.isSelected());
         String noturno = Boolean.toString(cb_noturno.isSelected());
-        if(nome.replaceAll(" ","").length()<1){
-            JOptionPane.showMessageDialog(this.rootPane, "Nome não pode ser vazio!");           
-        }else{
-            if(matricula.replaceAll(" ","").length()<1){
-                JOptionPane.showMessageDialog(this.rootPane, "Matrícula não pode ser vazia!"); 
-            }else{
-                if(!cb_matutino.isSelected() && !cb_vespertino.isSelected() && !cb_noturno.isSelected()){
-                    JOptionPane.showMessageDialog(this.rootPane, "Escolha algum dos 3 (três) turnos!");
-                    
-                }else{
-                    BufferedWriter buffWrite;
-                    try {
-                        buffWrite = new BufferedWriter(new FileWriter("professor.txt", true));
-                        buffWrite.append(matricula+","+nome+","+matutino+","+vespertino+","+noturno+","+disciplinas.trim());
-                        buffWrite.newLine();
-                        buffWrite.close();
-                    } catch (IOException ex) {
-                        Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    JOptionPane.showMessageDialog(this.rootPane, "Professor Cadastrado com sucesso!");
-                    dispose();
-                    new Inicio().setVisible(true);
-                }
-            }
-        }       
         
+        String[] disc_list = disciplinas.split(",");
+        int tam = disc_list.length;
+        ArrayList <Disciplina> disciplinas_cadastradas = Disciplina.retornaDisciplinas();
+        boolean val_cad_disc = true; 
+        boolean achou;
+        for(int i=0; i<disc_list.length; i++){
+            achou = false; 
+            for(int j=0; j<disciplinas_cadastradas.size();j++){
+                if(disc_list[i].equals(disciplinas_cadastradas.get(j).getCodigo())){
+                    achou = true;                 
+                }
+                if(j==disciplinas_cadastradas.size()-1 && achou==false && !disc_list[i].equals("")){
+                    JOptionPane.showMessageDialog(this.rootPane, disc_list[i]+" Não cadastrada!");
+                    val_cad_disc = false; 
+                    break;                    
+                }                
+            }             
+        } 
+        
+        if(val_cad_disc){
+            if(nome.replaceAll(" ","").length()<1){
+                JOptionPane.showMessageDialog(this.rootPane, "Nome não pode ser vazio!");           
+            }else{
+                if(matricula.replaceAll(" ","").length()<1){
+                    JOptionPane.showMessageDialog(this.rootPane, "Matrícula não pode ser vazia!"); 
+                }else{
+                    if(!cb_matutino.isSelected() && !cb_vespertino.isSelected() && !cb_noturno.isSelected()){
+                        JOptionPane.showMessageDialog(this.rootPane, "Escolha algum dos 3 (três) turnos!");
+
+                    }else{
+                        if(tam<3 || tam>5){
+                            JOptionPane.showMessageDialog(this.rootPane, "Professor deve ter no mínimo 3 preferências e no máximo 5!");
+
+                        }else{
+
+                             BufferedWriter buffWrite;
+                            try {
+                                buffWrite = new BufferedWriter(new FileWriter("professor.txt", true));
+                                buffWrite.append(matricula+","+nome+","+matutino+","+vespertino+","+noturno+","+disciplinas.trim());
+                                buffWrite.newLine();
+                                buffWrite.close();
+                            } catch (IOException ex) {
+                                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            JOptionPane.showMessageDialog(this.rootPane, "Professor Cadastrado com sucesso!");
+                            dispose();
+                            new Inicio().setVisible(true); 
+                        }
+                    }
+                }
+            }             
+        }          
     }//GEN-LAST:event_btn_cadastrarActionPerformed
 
     /**
