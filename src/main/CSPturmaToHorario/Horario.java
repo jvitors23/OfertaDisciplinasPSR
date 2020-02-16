@@ -12,10 +12,17 @@ import java.util.ArrayList;
  * @author helis
  */
 public class Horario {
+<<<<<<< HEAD
     public String[] aulas; 
 
     public Horario(String[] aulas) {
         this.aulas = aulas; 
+=======
+    public String aulas[];
+
+    public Horario(String[] aulas) {
+        this.aulas = aulas;
+>>>>>>> 787abab95b343dea639efdab320ad4f57323f558
     }
     
     
@@ -177,9 +184,20 @@ public class Horario {
             }
         }
         
+<<<<<<< HEAD
         return domain;
     }
 
     
     
+=======
+        if(numCreditos == 4){
+            domain.remove(new Horario(new String[]{calculo[0],calculo[1], ""}));
+            domain.remove(new Horario(new String[]{fisica[0],fisica[1], ""}));
+        }
+        
+        return domain;
+    }
+
+>>>>>>> 787abab95b343dea639efdab320ad4f57323f558
 }

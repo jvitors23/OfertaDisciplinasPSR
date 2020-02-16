@@ -9,6 +9,7 @@ import java.io.IOException;
 import main.aima.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import main.CSPturmaToHorario.Horario;
 
 /**
  *
@@ -20,7 +21,10 @@ public class Inicio extends javax.swing.JFrame {
      * Creates new form Inicio
      */
     public Inicio() {
-        
+        Horario h = new Horario(new String[]{"meupau","noseu","cu"});
+        for (int i = 0; i < h.aulas.length; i++) {
+            System.out.println(h.aulas[i]);
+        }
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
