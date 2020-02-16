@@ -326,6 +326,8 @@ public class ConfigOferta extends javax.swing.JFrame {
     private void btn_iniciar_ofertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciar_ofertaActionPerformed
         // TODO add your handling code here:
         
+       
+        
         
         boolean val_disc=true;
         String disc = edt_disciplinas.getText().replaceAll(" ","");
@@ -355,6 +357,21 @@ public class ConfigOferta extends javax.swing.JFrame {
             }             
         }
         
+        boolean val_disc_list =true; 
+        
+        for (int i = 0; i < disc_list.length; i++) {
+            for (int j = 0; j < disc_list.length; j++) {
+                if(i!=j && disc_list[i].equals(disc_list[j]))
+                    val_disc_list = false; 
+            }
+        }
+        
+        if(val_disc_list==false){
+            JOptionPane.showMessageDialog(this.rootPane, "Turmas duplicadas foram adicionadas!");
+            
+        }
+        
+        
         boolean val_prof = true; 
         String prof = edt_professores.getText().replaceAll(" ","");
         String[] prof_list = prof.split(",");
@@ -374,7 +391,8 @@ public class ConfigOferta extends javax.swing.JFrame {
             }             
         }
         
-        if(val_disc && val_cad_disc && val_prof && !edt_professores.getText().replaceAll(" ","").equals("")){
+        
+        if(val_disc_list && val_disc && val_cad_disc && val_prof && !edt_professores.getText().replaceAll(" ","").equals("")){
             String[] todas_disc = new String[disc_list.length+obrigatorias.size()];      
            
             for(int i=0; i<obrigatorias.size(); i++){

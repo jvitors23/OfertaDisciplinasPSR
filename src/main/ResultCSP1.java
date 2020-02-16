@@ -457,81 +457,88 @@ public class ResultCSP1 extends javax.swing.JFrame {
             String[] aulas_calculo;
             aulas_calculo = horario_calculo.getModel().getElementAt(horario_calculo.getSelectedIndex()).split(" e ");
             
-            ArrayList<Turma> turmas_oferta = new ArrayList<Turma>();
-            for(int i=0; i<professores_oferta.size(); i++){
-                for (int j = 0; j < professores_oferta.get(i).lecionadas.size(); j++) {
-                    if(professores_oferta.get(i).lecionadas.get(j).charAt(0)=='C'){
-                        try {
-                            turmas_oferta.add(new Turma(Disciplina.retornaDisciplina(professores_oferta.get(i).lecionadas.get(j)),professores_oferta.get(i) ));
-                        } catch (IOException ex) {
-                            Logger.getLogger(ResultCSP1.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                }                
-            }      
-          
-            TurmaHorario csp2 = null; 
-            
-            FlexibleBacktrackingSolver strategy = new FlexibleBacktrackingSolver<Turma, Horario>();
-            Assignment<Turma, Horario> resultado = null;
-            Optional<Assignment<Turma, Horario>> solucao; 
-            
-            
-            try {
-                csp2 = new TurmaHorario(turmas_oferta, aulas_fisica, aulas_calculo);
-            } catch (IOException ex) {
-                Logger.getLogger(ResultCSP1.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            solucao = strategy.solve(csp2);
-            
-            
-            try{
-                resultado = solucao.get();               
-                
-
-                
-            }catch(java.util.NoSuchElementException e){
-                
-                System.out.println("Não foi possível alocar");
-                              
-            }   
-            
-            Horario aux; 
-            String horario; 
-            for (int i = 0; i < turmas_oferta.size() ; i++) {
-                aux = resultado.getValue(turmas_oferta.get(i));
-                horario = aux.aulas[0]+" "+aux.aulas[1]+" "+aux.aulas[2];
-                turmas_oferta.get(i).horario = horario;
-                
-                
-            }
-            
-            for (int i = 0; i < professores_oferta.size(); i++) {
-                for (int j = 0; j < turmas_oferta.size(); j++) {
-                    if(professores_oferta.get(i).getNome().equals(turmas_oferta.get(j).professor.nome)){
-                        professores_oferta.get(i).setCreditos_lecionados(turmas_oferta.get(j).professor.getCreditos_lecionados());
+            boolean choque = false;
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < 2; j++) {
+                    if(aulas_fisica[i].equals(aulas_calculo[j])){
+                        choque = true;
                     }
                 }
             }
             
-            
-            this.dispose();
-            
-            try {
-                new ResultadoCSP2(professores_oferta, disciplinas_oferta, turmas_oferta, disc_nao_alocadas, aulas_fisica, aulas_calculo).setVisible(true);
-            } catch (IOException ex) {
-                Logger.getLogger(ResultCSP1.class.getName()).log(Level.SEVERE, null, ex);
+            if(choque){
+                JOptionPane.showMessageDialog(this.rootPane, "Os horários de FISI0262 e MAT0153 não devem chocar!");
+                
+            }else{                
+                ArrayList<Turma> turmas_oferta = new ArrayList<Turma>();
+                for(int i=0; i<professores_oferta.size(); i++){
+                    for (int j = 0; j < professores_oferta.get(i).lecionadas.size(); j++) {
+                        if(professores_oferta.get(i).lecionadas.get(j).charAt(0)=='C'){
+                            try {
+                                turmas_oferta.add(new Turma(Disciplina.retornaDisciplina(professores_oferta.get(i).lecionadas.get(j)),professores_oferta.get(i) ));
+                            } catch (IOException ex) {
+                                Logger.getLogger(ResultCSP1.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }                
+                }      
+
+                TurmaHorario csp2 = null; 
+
+                FlexibleBacktrackingSolver strategy = new FlexibleBacktrackingSolver<Turma, Horario>();
+                Assignment<Turma, Horario> resultado = null;
+                Optional<Assignment<Turma, Horario>> solucao; 
+
+
+                try {
+                    csp2 = new TurmaHorario(turmas_oferta, aulas_fisica, aulas_calculo);
+                } catch (IOException ex) {
+                    Logger.getLogger(ResultCSP1.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                solucao = strategy.solve(csp2);
+
+
+                try{
+                    resultado = solucao.get();               
+
+
+
+                }catch(java.util.NoSuchElementException e){
+
+                    System.out.println("Não foi possível alocar");
+
+                }   
+
+                Horario aux; 
+                String horario; 
+                for (int i = 0; i < turmas_oferta.size() ; i++) {
+                    aux = resultado.getValue(turmas_oferta.get(i));
+                    horario = aux.aulas[0]+" "+aux.aulas[1]+" "+aux.aulas[2];
+                    turmas_oferta.get(i).horario = horario;
+
+
+                }
+
+                for (int i = 0; i < professores_oferta.size(); i++) {
+                    for (int j = 0; j < turmas_oferta.size(); j++) {
+                        if(professores_oferta.get(i).getNome().equals(turmas_oferta.get(j).professor.nome)){
+                            professores_oferta.get(i).setCreditos_lecionados(turmas_oferta.get(j).professor.getCreditos_lecionados());
+                        }
+                    }
+                }
+
+
+                this.dispose();
+
+                try {
+                    new ResultadoCSP2(professores_oferta, disciplinas_oferta, turmas_oferta, disc_nao_alocadas, aulas_fisica, aulas_calculo).setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(ResultCSP1.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
             }
-            
-            
-            
-            
-            
-            
-            
         }
-        
         
     }//GEN-LAST:event_btn_iniciar_alocacaoActionPerformed
 
