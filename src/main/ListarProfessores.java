@@ -25,7 +25,10 @@ public class ListarProfessores extends javax.swing.JFrame {
         text_area.setLayout(null);
         text_area.setEditable(false);
         
-        ArrayList<Professor> professores_cadastrados = Professor.retornaProfessores();  
+        ArrayList<Professor> professores_cadastrados = Professor.retornaProfessores(); 
+        if(professores_cadastrados.size()<1){
+            text_area.append("Não existem professores cadastrados!");
+        }
         if(professores_cadastrados != null)
             for (int i = 0; i < professores_cadastrados.size(); i++) {
                 String matutino = "";
@@ -45,7 +48,9 @@ public class ListarProfessores extends javax.swing.JFrame {
                 text_area.append("Turnos de trabalho: "+matutino+" "+vespertino+" "+noturno+"\n");
                 text_area.append("Preferencias: \n");
                 for (int j = 0; j < professores_cadastrados.get(i).preferencias.size(); j++) {
-                    text_area.append(professores_cadastrados.get(i).preferencias.get(j)+"\n");                
+                    text_area.append(professores_cadastrados.get(i).preferencias.get(j)
+                    +"-"+Disciplina.retornaDisciplina(professores_cadastrados.get(i).preferencias.get(j)).getNome()+"\n");    
+                    
                 }            
             }
         else{
@@ -62,6 +67,11 @@ public class ListarProfessores extends javax.swing.JFrame {
         text_area.setEditable(false);
         
         ArrayList<Professor> professores_cadastrados = Professor.retornaProfessores();  
+        
+        if(professores_cadastrados.size()<1){
+            text_area.append("Não existem professores cadastrados!");
+        }
+        
         if(professores_cadastrados != null)
             for (int i = 0; i < professores_cadastrados.size(); i++) {
                 String matutino = "";
@@ -81,7 +91,8 @@ public class ListarProfessores extends javax.swing.JFrame {
                 text_area.append("Turnos de trabalho: "+matutino+" "+vespertino+" "+noturno+"\n");
                 text_area.append("Preferencias: \n");
                 for (int j = 0; j < professores_cadastrados.get(i).preferencias.size(); j++) {
-                    text_area.append(professores_cadastrados.get(i).preferencias.get(j)+"\n");                
+                    text_area.append(professores_cadastrados.get(i).preferencias.get(j)
+                            +"-"+Disciplina.retornaDisciplina(professores_cadastrados.get(i).preferencias.get(j)).getNome()+"\n");                
                 }            
             }
         else{

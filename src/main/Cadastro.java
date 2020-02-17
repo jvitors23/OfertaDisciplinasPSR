@@ -60,6 +60,7 @@ public class Cadastro extends javax.swing.JFrame {
         lbl_campos_obrigatorios = new javax.swing.JLabel();
         lbl_dica = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,6 +124,13 @@ public class Cadastro extends javax.swing.JFrame {
 
         jLabel3.setText("O professor deve escolher pelo menos um dos 3 (três) turnos.");
 
+        jButton1.setText("Visualizar Disciplinas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,11 +153,6 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addGap(142, 142, 142)
                                 .addComponent(lbl_cadastrar_professor))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(91, 91, 91)
-                                .addComponent(btn_cancelar)
-                                .addGap(69, 69, 69)
-                                .addComponent(btn_cadastrar))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(lbl_turno)
                                 .addGap(39, 39, 39)
                                 .addComponent(cb_matutino)
@@ -161,8 +164,16 @@ public class Cadastro extends javax.swing.JFrame {
                             .addComponent(lbl_campos_obrigatorios)
                             .addComponent(lbl_dica)
                             .addComponent(jLabel3))
-                        .addGap(0, 8, Short.MAX_VALUE))
-                    .addComponent(edt_preferencias, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(0, 31, Short.MAX_VALUE))
+                    .addComponent(edt_preferencias, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(btn_cancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(28, 28, 28)
+                        .addComponent(btn_cadastrar)
+                        .addGap(36, 36, 36)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -199,7 +210,8 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cancelar)
-                    .addComponent(btn_cadastrar))
+                    .addComponent(btn_cadastrar)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -273,11 +285,11 @@ public class Cadastro extends javax.swing.JFrame {
 
                         }else{
 
-                             BufferedWriter buffWrite;
+                            BufferedWriter buffWrite;
                             try {
                                 buffWrite = new BufferedWriter(new FileWriter("professor.txt", true));
-                                buffWrite.append(matricula+","+nome+","+matutino+","+vespertino+","+noturno+","+disciplinas.trim());
-                                buffWrite.newLine();
+                                buffWrite.append(matricula+","+nome+","+matutino+","+vespertino+","+noturno+","+disciplinas.trim()+"\n");
+                                
                                 buffWrite.close();
                             } catch (IOException ex) {
                                 Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
@@ -291,6 +303,16 @@ public class Cadastro extends javax.swing.JFrame {
             }             
         }          
     }//GEN-LAST:event_btn_cadastrarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            new ListarDisciplinas(false).setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(ConfigOferta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,6 +359,7 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JTextField edt_matricula;
     private javax.swing.JTextField edt_nome;
     private javax.swing.JTextField edt_preferencias;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lbl_cadastrar_professor;
     private javax.swing.JLabel lbl_campos_obrigatorios;

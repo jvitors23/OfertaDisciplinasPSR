@@ -1,5 +1,18 @@
-5,Ricardo,false,true,false,COMP0461,COMP0481
-2,Beatriz Trinchao ,false,true,false,COMP0395,COMP0393,COMP0409
-3,Breno Piva,false,true,false,COMP0412,COMP0409,COMP0334
-4,Tarcisio da Rocha,false,false,true,COMP0461,COMP0470,COMP0418
-1,Andre Brito,false,true,false,COMP0393,COMP0455,COMP0334,COMP0405
+1,André Brito,true,true,false,COMP0393,COMP0395,COMP0405,COMP0455
+2,Beatriz Trinchão,true,true,false,COMP0395,COMP0478,COMP0391
+3,Breno Piva,false,true,false,COMP0409,COMP0412,COMP0391
+4,Tarcisio da Rocha,false,false,true,COMP0470,COMP0461,COMP0472
+5,Ricardo Salgueiro,false,true,false,COMP0461,COMP0463,COMP0470
+6,Edillayne Salgueiro,false,true,false,COMP0463,COMP0461,COMP0480,COMP0393
+7,Kalil Bispo,true,true,false,COMP0334,COMP0410,COMP0391,COMP0393
+8,Kenia Kodel,false,true,false,COMP0478,COMP0405,COMP0481
+9,Chella,false,true,false,COMP0417,COMP0415,COMP0416,COMP0419
+10,Edward Moreno,false,true,false,COMP0415,COMP0416,COMP0480
+11,Leonardo Nogueira,true,true,false,COMP0427,COMP0397,COMP0395,COMP0410
+12,Estombelo,false,true,false,COMP0427,COMP0405,COMP0334
+13,Débora Coelho,false,true,false,COMP0438,COMP0478,COMP0480
+14,Adicineia,false,false,true,COMP0438,COMP0439,COMP0478,COMP0480
+15,Rene Pereira,false,true,true,COMP0472,COMP0408,COMP0397
+16,Leila,false,true,false,COMP0408,COMP0412,COMP0393
+17,Janio,false,true,false,COMP0417,COMP0412,COMP0481,COMP0418
+18,Bruno,false,true,true,COMP0417,COMP0415,COMP0418

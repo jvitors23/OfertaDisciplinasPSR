@@ -44,8 +44,7 @@ public class ConfigOferta extends javax.swing.JFrame {
             
             
         }
-        System.out.println(obrigatorias.size());
-        
+                
         lbl_obrigatorias.setText(label_obrig);
         
         
