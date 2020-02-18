@@ -175,7 +175,11 @@ public class Remover extends javax.swing.JFrame {
         // TODO add your handling code here
         
         this.dispose();
-        new Inicio().setVisible(true);
+        try {
+            new Inicio().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Remover.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -242,7 +246,11 @@ public class Remover extends javax.swing.JFrame {
                     
                     JOptionPane.showMessageDialog(this.rootPane, "Professor "+nome+" removido com sucesso!"); 
                     this.dispose();
-                    new Inicio().setVisible(true);
+                    try {
+                        new Inicio().setVisible(true);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Remover.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     
                    
                 }
@@ -250,7 +258,11 @@ public class Remover extends javax.swing.JFrame {
             }else{
                 JOptionPane.showMessageDialog(this.rootPane, "Não existem professores cadastrados!"); 
                 this.dispose();
-                new Inicio().setVisible(true);
+                try {
+                    new Inicio().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Remover.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         
         

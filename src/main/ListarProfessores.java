@@ -179,7 +179,11 @@ public class ListarProfessores extends javax.swing.JFrame {
     private void btn_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_menuActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new Inicio().setVisible(true);
+        try {
+            new Inicio().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(ListarProfessores.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_btn_menuActionPerformed
 

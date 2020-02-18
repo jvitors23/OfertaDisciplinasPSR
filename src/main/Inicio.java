@@ -5,6 +5,11 @@
  */
 package main;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import main.aima.*;
@@ -22,16 +27,68 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
-    public Inicio() {
+    public Inicio() throws IOException {
         
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         
+        ArrayList<String> list_discs = new ArrayList<String>();
+        
+        list_discs.add("1;COMP0393;PROGRAMACAO FUNCIONAL;4");
+        list_discs.add("1;COMP0478;INFORMATICA, ETICA E SOCIEDADE;4");
+        list_discs.add("1;COMP0480;SEMINARIOS EM COMPUTACAO;2");
+        list_discs.add("2;COMP0334;PROGRAMACAO IMPERATIVA;4");
+        list_discs.add("2;COMP0410;LOGICA PARA COMPUTACAO;4");
+        list_discs.add("3;COMP0395;PROGRAMACAO ORIENTADA A OBJETOS;4");
+        list_discs.add("3;COMP0405;ESTRUTURAS DE DADOS;4");
+        list_discs.add("3;COMP0416;FUNDAMENTOS DE SISTEMAS DIGITAIS;4");
+        list_discs.add("3;COMP0419;PRATICA EM SISTEMAS DIGITAIS;2");
+        list_discs.add("3;COMP0481;METODOS E TECNICAS DE PESQUISA PARA COMPUTACAO;2");
+        list_discs.add("3;FISI0262;FISICA 3;4");
+        list_discs.add("3;MAT0153;CALCULO C;4");
+        list_discs.add("4;COMP0409;LINGUAGENS FORMAIS E COMPUTABILIDADE;4");
+        list_discs.add("4;COMP0412;PROJETO E ANALISE DE ALGORITMOS;4");
+        list_discs.add("4;COMP0415;ARQUITETURA DE COMPUTADORES;4");
+        list_discs.add("4;COMP0417;FUNDAMENTOS DE SISTEMAS EMBARCADOS;2");
+        list_discs.add("5;COMP0408;GRAFOS E ALGORITMOS COMPUTACIONAIS;4");
+        list_discs.add("5;COMP0438;ENGENHARIA DE SOFTWARE I;4");
+        list_discs.add("5;COMP0461;REDES DE COMPUTADORES;4");
+        list_discs.add("6;COMP0397;PROGRAMACAO PARALELA E CONCORRENTE;4");
+        list_discs.add("6;COMP0427;INTELIGENCIA ARTIFICIAL;4");
+        list_discs.add("6;COMP0439;ENGENHARIA DE SOFTWARE II;4");
+        list_discs.add("6;COMP0455;BANCO DE DADOS I;4");
+        list_discs.add("6;COMP0463;LABORATORIO DE REDES DE COMPUTADORES;2");
+        list_discs.add("6;COMP0470;SISTEMAS DISTRIBUIDOS;4");
+        list_discs.add("7;COMP0418;INTERFACE HARDWARE/SOFTWARE;4");
+        list_discs.add("8;COMP0391;COMPILADORES;4");   
         
         
-        
-        
+        BufferedReader buffRead;
+        try {
+            buffRead = new BufferedReader(new FileReader("disciplinas.txt"));
+        } catch (FileNotFoundException ex) {
+            
+            BufferedWriter buffWrite = null;
+            try {
+                buffWrite = new BufferedWriter(new FileWriter("disciplinas.txt", true));
+            } catch (IOException ex1) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+ 
+            
+            for (int i = 0; i < list_discs.size(); i++) {
+                try {
+                    buffWrite.append(list_discs.get(i)+"\n");
+                } catch (IOException ex1) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+
+            
+            
+            } 
+            buffWrite.close();            
+        }              
         
     }
 
@@ -393,7 +450,11 @@ public class Inicio extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inicio().setVisible(true);
+                try {
+                    new Inicio().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
                
             }
         });

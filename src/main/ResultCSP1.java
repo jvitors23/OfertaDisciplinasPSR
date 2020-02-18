@@ -100,7 +100,8 @@ public class ResultCSP1 extends javax.swing.JFrame {
                 area_sucesso.append("=============\n");
                 area_sucesso.append("Nome: "+professores_oferta.get(i).getNome()+"\n");
                 for(int j=0; j<professores_oferta.get(i).getLecionadas().size();j++){
-                    area_sucesso.append(professores_oferta.get(i).getLecionadas().get(j)+"\n");
+                    area_sucesso.append(professores_oferta.get(i).getLecionadas().get(j)+"-"+
+                            Disciplina.retornaDisciplina(professores_oferta.get(i).getLecionadas().get(j)).getNome()+"\n");
                     disc_alocadas.add(professores_oferta.get(i).getLecionadas().get(j));
                 }                
             }            
@@ -545,7 +546,11 @@ public class ResultCSP1 extends javax.swing.JFrame {
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new Inicio().setVisible(true);
+        try {
+            new Inicio().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(ResultCSP1.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     /**

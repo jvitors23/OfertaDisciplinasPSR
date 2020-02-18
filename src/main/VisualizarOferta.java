@@ -212,7 +212,11 @@ public class VisualizarOferta extends javax.swing.JFrame {
         // TODO add your handling code here:
                
         this.dispose();
-        new Inicio().setVisible(true);
+        try {
+            new Inicio().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(VisualizarOferta.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void btn_gerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerarActionPerformed
@@ -234,43 +238,32 @@ public class VisualizarOferta extends javax.swing.JFrame {
         Assignment<Professor, String> resultado = null;
         Optional<Assignment<Professor, String>> solucao; 
         
-        //adiciona disciplinas a definir
-        for(int i = 0 ; i<professores_oferta.size(); i++){   
-            Disciplina d = new Disciplina(0, "A definir", "a_definir"+professores_oferta.get(i).getMatricula(),0);
-            disciplinas_dcomp.add(d);    
-        }    
+          
         
         int count=disciplinas_dcomp.size();
         boolean a = false;       
         while(count>0){
-            a=false;
-            for(int i = 0 ; i<professores_oferta.size(); i++){  
-                String disc ="a_definir"+professores_oferta.get(i).getMatricula();
-                for (int j = 0; j < disciplinas_dcomp.size(); j++) {
-                    if(disc.equals(disciplinas_dcomp.get(i).getCodigo())){
-                        a = true;                         
-                    }
-                    if(j==disciplinas_dcomp.size()-1 && a==false){
-                        Disciplina d = new Disciplina(0, "A definir", "a_definir"+professores_oferta.get(i).getMatricula(),0);
-                        disciplinas_dcomp.add(d);     
-                        j++;
-                    }
-                }                
-            }  
-
+            
+            //adiciona disciplinas a definir
+            for(int i = 0 ; i<professores_oferta.size(); i++){   
+                Disciplina d = new Disciplina(0, "A definir", "a_definir"+professores_oferta.get(i).getMatricula(),0);
+                disciplinas_dcomp.add(d);    
+            }             
+            
+            //Instancia o CSP
             try {
                 csp1 = new ProfessorDisciplina(this.disciplinas_dcomp, this.professores_oferta);
             } catch(IOException ex) {
                 Logger.getLogger(VisualizarOferta.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
+            //Gera a solução
             solucao = strategy.solve(csp1);
             
             //tratar retorno vazio
             try{
                 resultado = solucao.get();                
-            }catch(java.util.NoSuchElementException e){
-                
+            }catch(java.util.NoSuchElementException e){                
                 System.out.println("Não foi possível alocar");
                 break;                
             }   
@@ -290,6 +283,7 @@ public class VisualizarOferta extends javax.swing.JFrame {
                 }
             }
             
+            //condição de parada
             a=true; 
             for(int i=0; i<resultado.getVariables().size(); i++){               
                 String disciplinaAux = resultado.getValue(resultado.getVariables().get(i));
@@ -298,17 +292,6 @@ public class VisualizarOferta extends javax.swing.JFrame {
             }
             if(a)
                 break;
-            
-            int k=0;
-            for(int i=0; i<disciplinas_dcomp.size(); i++){
-                if(disciplinas_dcomp.get(i).getCodigo().charAt(0)=='C'){
-                    k++;
-                }
-            }
-            count = k; 
-            if(count == 0){
-                break; 
-            }
             
         }
         
@@ -339,6 +322,8 @@ public class VisualizarOferta extends javax.swing.JFrame {
                     break;
                 }         
             }
+            
+            
         }       
         
         this.dispose();

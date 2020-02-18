@@ -237,7 +237,11 @@ public class Cadastro extends javax.swing.JFrame {
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new Inicio().setVisible(true);
+        try {
+            new Inicio().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
@@ -296,7 +300,11 @@ public class Cadastro extends javax.swing.JFrame {
                             }
                             JOptionPane.showMessageDialog(this.rootPane, "Professor Cadastrado com sucesso!");
                             dispose();
-                            new Inicio().setVisible(true); 
+                            try { 
+                                new Inicio().setVisible(true);
+                            } catch (IOException ex) {
+                                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
                     }
                 }
