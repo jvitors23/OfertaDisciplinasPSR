@@ -91,6 +91,7 @@ public class ListarProfessores extends javax.swing.JFrame {
                 text_area.append("Turnos de trabalho: "+matutino+" "+vespertino+" "+noturno+"\n");
                 text_area.append("Preferencias: \n");
                 for (int j = 0; j < professores_cadastrados.get(i).preferencias.size(); j++) {
+                    
                     text_area.append(professores_cadastrados.get(i).preferencias.get(j)
                             +"-"+Disciplina.retornaDisciplina(professores_cadastrados.get(i).preferencias.get(j)).getNome()+"\n");                
                 }            

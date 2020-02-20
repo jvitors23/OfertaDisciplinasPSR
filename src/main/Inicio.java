@@ -54,6 +54,7 @@ public class Inicio extends javax.swing.JFrame {
         list_discs.add("5;COMP0408;GRAFOS E ALGORITMOS COMPUTACIONAIS;4");
         list_discs.add("5;COMP0438;ENGENHARIA DE SOFTWARE I;4");
         list_discs.add("5;COMP0461;REDES DE COMPUTADORES;4");
+         list_discs.add("5;COMP0472;SISTEMAS OPERACIONAIS;4");
         list_discs.add("6;COMP0397;PROGRAMACAO PARALELA E CONCORRENTE;4");
         list_discs.add("6;COMP0427;INTELIGENCIA ARTIFICIAL;4");
         list_discs.add("6;COMP0439;ENGENHARIA DE SOFTWARE II;4");
@@ -347,11 +348,26 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btn_listar_professoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listar_professoresActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        ArrayList<Professor> professores_cadastrados = null;
         try {
-            new ListarProfessores().setVisible(true);
+            professores_cadastrados = Professor.retornaProfessores();
         } catch (IOException ex) {
             Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if(professores_cadastrados==null){
+            JOptionPane.showMessageDialog(this.rootPane, "Não existem professores cadastrados!");
+            this.dispose();
+            new Cadastro().setVisible(true);
+        }else{
+
+            this.dispose();
+            try {
+                new ListarProfessores().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
     }//GEN-LAST:event_btn_listar_professoresActionPerformed
 
