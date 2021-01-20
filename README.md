@@ -1,4 +1,5 @@
-# Oferta de disciplinas usando PSR - Problema de satisfação de restrições
+# Oferta de disciplinas usando PSR
+
 Projeto da Disciplina Inteligência Artificial. 
 
 
